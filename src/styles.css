@@ -271,3 +271,13 @@
   }
 }
 
+.jungle-frame {
+  border-image-source: url('./assets/jungle-frame.png');
+  border-image-slice: 160 fill;
+  border-image-width: 56px;
+  border-image-repeat: round stretch;
+  border-width: 56px;
+  border-style: solid;
+  border-color: transparent;
+}
+
