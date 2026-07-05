@@ -109,9 +109,9 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <footer className="mt-20 border-t border-[oklch(0.78_0.16_75/0.25)] bg-[oklch(0.14_0.05_155)]">
         <div className="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-4 gap-8">
           <div>
-            <img src={logo} alt="" className="h-16 w-auto mb-3" />
-            <p className="text-xs text-[oklch(0.75_0.04_75)] leading-relaxed">
-              Sociální kasino zdarma. Bez reálných peněz, bez vkladů, bez výher. Pouze pro zábavu.
+            <div className="mb-3"><BrandMark /></div>
+            <p className="text-xs text-[oklch(0.75_0.04_95)] leading-relaxed">
+              Sociální kasino v duchu divoké džungle. Bez reálných peněz, bez vkladů, bez výher. Pouze pro zábavu.
             </p>
           </div>
           <div>
