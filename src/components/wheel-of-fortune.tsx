@@ -162,7 +162,7 @@ export function WheelOfFortune() {
     <div className="max-w-3xl mx-auto">
       <div className="rounded-3xl p-1 bg-gold-grad shadow-gold">
         <div className="rounded-3xl bg-gradient-to-b from-[oklch(0.28_0.14_155)] to-[oklch(0.18_0.08_155)] p-5 sm:p-8 border border-[oklch(0.88_0.16_85/0.3)]">
-          <div className="ring-bulbs h-3 animate-bulb mb-4 rounded-full" />
+          <div className="vine-divider vine-divider-animated mb-4" />
 
           <div className="flex items-center justify-between mb-4 gap-3">
             <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-black/40 border border-[oklch(0.78_0.16_75/0.4)]">

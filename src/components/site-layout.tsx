@@ -40,9 +40,9 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         className="fixed inset-0 pointer-events-none bg-gradient-to-b from-[oklch(0.1_0.05_155/0.75)] via-[oklch(0.12_0.06_155/0.6)] to-[oklch(0.08_0.04_155/0.92)]"
         style={{ zIndex: -1 }}
       />
-      {/* Bulb string ornament */}
-      <div className="h-3 bg-gradient-to-b from-[oklch(0.2_0.06_155)] to-transparent border-b border-[oklch(0.78_0.16_75/0.3)]">
-        <div className="ring-bulbs h-3 animate-bulb opacity-90" />
+      {/* Jungle vine ornament */}
+      <div className="h-8 bg-gradient-to-b from-[oklch(0.2_0.06_155)] to-transparent border-b border-[oklch(0.78_0.16_75/0.25)]">
+        <div className="vine-divider vine-divider-animated" />
       </div>
 
       <header className="sticky top-0 z-40 backdrop-blur-md bg-[oklch(0.17_0.06_155/0.85)] border-b border-[oklch(0.78_0.16_75/0.25)]">
