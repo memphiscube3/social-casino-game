@@ -14,14 +14,14 @@ type Sector = {
 
 // Sectors in visual order clockwise starting from the top (12 o'clock).
 const SECTORS: Sector[] = [
-  { mult: 1,   label: "×1",       weight: 30, fill: "#c62828", text: "#ffe9a8" },
-  { mult: 10,  label: "×10",      weight: 3,  fill: "#f2c14b", text: "#4a1010" },
-  { mult: 2,   label: "×2",       weight: 15, fill: "#c62828", text: "#ffe9a8" },
-  { mult: 0,   label: "×0",       weight: 40, fill: "#f2c14b", text: "#4a1010" },
-  { mult: 3,   label: "×3",       weight: 8,  fill: "#c62828", text: "#ffe9a8" },
-  { mult: 25,  label: "×25",      weight: 1,  fill: "#f2c14b", text: "#4a1010" },
-  { mult: 5,   label: "×5",       weight: 5,  fill: "#c62828", text: "#ffe9a8" },
-  { mult: 100, label: "JACKPOT",  weight: 0.5, fill: "#f2c14b", text: "#4a1010" },
+  { mult: 1,   label: "×1",       weight: 30, fill: "#1f6b3a", text: "#f2e9c8" },
+  { mult: 10,  label: "×10",      weight: 3,  fill: "#f2c14b", text: "#1a3a1a" },
+  { mult: 2,   label: "×2",       weight: 15, fill: "#1f6b3a", text: "#f2e9c8" },
+  { mult: 0,   label: "×0",       weight: 40, fill: "#f2c14b", text: "#1a3a1a" },
+  { mult: 3,   label: "×3",       weight: 8,  fill: "#1f6b3a", text: "#f2e9c8" },
+  { mult: 25,  label: "×25",      weight: 1,  fill: "#f2c14b", text: "#1a3a1a" },
+  { mult: 5,   label: "×5",       weight: 5,  fill: "#1f6b3a", text: "#f2e9c8" },
+  { mult: 100, label: "JACKPOT",  weight: 0.5, fill: "#f2c14b", text: "#1a3a1a" },
 ];
 
 const N = SECTORS.length;
@@ -191,7 +191,7 @@ export function WheelOfFortune() {
                   </linearGradient>
                   <radialGradient id="ptrGem" cx="0.5" cy="0.4" r="0.6">
                     <stop offset="0%" stopColor="#ffd66b" />
-                    <stop offset="60%" stopColor="#c62828" />
+                    <stop offset="60%" stopColor="#1f6b3a" />
                     <stop offset="100%" stopColor="#3a0808" />
                   </radialGradient>
                 </defs>
@@ -228,7 +228,7 @@ export function WheelOfFortune() {
               {/* Outer gold rim */}
               <circle cx={CX} cy={CY} r={R + 14} fill="url(#rimGold)" stroke="#3a1a06" strokeWidth="2" filter="url(#dropSoft)" />
               {/* Inner rim well (darker groove) */}
-              <circle cx={CX} cy={CY} r={R + 4} fill="#2a0a0a" />
+              <circle cx={CX} cy={CY} r={R + 4} fill="#0a2a15" />
               {/* Bulbs around the rim */}
               {Array.from({ length: 24 }).map((_, i) => {
                 const a = (i / 24) * 2 * Math.PI - Math.PI / 2;
@@ -257,9 +257,9 @@ export function WheelOfFortune() {
             >
               <defs>
                 <radialGradient id="wedgeRed" cx="0.5" cy="0.5" r="0.75">
-                  <stop offset="0%" stopColor="#e14a4a" />
-                  <stop offset="60%" stopColor="#a41f1f" />
-                  <stop offset="100%" stopColor="#4a0a0a" />
+                  <stop offset="0%" stopColor="#3fa063" />
+                  <stop offset="60%" stopColor="#1f6b3a" />
+                  <stop offset="100%" stopColor="#0a2a15" />
                 </radialGradient>
                 <radialGradient id="wedgeGold" cx="0.5" cy="0.5" r="0.75">
                   <stop offset="0%" stopColor="#ffe28a" />
@@ -297,7 +297,7 @@ export function WheelOfFortune() {
                     <path
                       d={wedgePath(CX, CY, R, a1, a2)}
                       fill={isGold ? "url(#wedgeGold)" : "url(#wedgeRed)"}
-                      stroke="#2a0a0a"
+                      stroke="#0a2a15"
                       strokeWidth="1.5"
                     />
                     <text
@@ -309,7 +309,7 @@ export function WheelOfFortune() {
                       fontSize={s.mult === 100 ? 15 : 22}
                       fontWeight="900"
                       transform={`rotate(${mid} ${tx} ${ty})`}
-                      style={{ fontFamily: "Georgia, serif", paintOrder: "stroke", stroke: "#2a0a0a", strokeWidth: 1.2 }}
+                      style={{ fontFamily: "Georgia, serif", paintOrder: "stroke", stroke: "#0a2a15", strokeWidth: 1.2 }}
                     >
                       {s.label}
                     </text>
@@ -330,7 +330,7 @@ export function WheelOfFortune() {
 
               {/* Hub bevel */}
               <circle cx={CX} cy={CY} r={40} fill="url(#hubGold)" stroke="#3a1a06" strokeWidth="2" />
-              <circle cx={CX} cy={CY} r={30} fill="#4a1010" stroke="#f2c14b" strokeWidth="2" />
+              <circle cx={CX} cy={CY} r={30} fill="#0f3a1f" stroke="#f2c14b" strokeWidth="2" />
               <circle cx={CX} cy={CY} r={16} fill="url(#hubCenter)" stroke="#3a1a06" strokeWidth="1.5" />
               <circle cx={CX - 3} cy={CY - 4} r={4} fill="#fff" opacity="0.7" />
             </svg>
