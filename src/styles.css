@@ -232,5 +232,42 @@
     50% { transform: translateX(4px) rotate(1.5deg); }
   }
   .animate-vine { animation: vine-sway 6s ease-in-out infinite; transform-origin: top center; }
+  @keyframes leaf-float {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.55; }
+    50% { transform: translateY(-24px) rotate(12deg); opacity: 0.95; }
+    100% { transform: translateY(0) rotate(0deg); opacity: 0.55; }
+  }
+  .animate-leaf-float { animation: leaf-float 7s ease-in-out infinite; }
+  @keyframes coin-spin {
+    0%, 100% { transform: rotateY(0deg) translateY(0); }
+    50% { transform: rotateY(180deg) translateY(-10px); }
+  }
+  .animate-coin-spin { animation: coin-spin 5s ease-in-out infinite; transform-style: preserve-3d; }
+  @keyframes firefly {
+    0%, 100% { opacity: 0.2; transform: translate(0,0) scale(0.8); }
+    25% { opacity: 1; transform: translate(20px,-15px) scale(1.1); }
+    50% { opacity: 0.5; transform: translate(-10px,-30px) scale(0.9); }
+    75% { opacity: 0.9; transform: translate(-25px,-10px) scale(1); }
+  }
+  .animate-firefly { animation: firefly 8s ease-in-out infinite; }
+  @keyframes fog-drift {
+    0% { transform: translateX(-5%); }
+    100% { transform: translateX(5%); }
+  }
+  .animate-fog { animation: fog-drift 20s ease-in-out infinite alternate; }
+  @keyframes tilt-hover {
+    0%, 100% { transform: translateY(0) rotate(-0.5deg); }
+    50% { transform: translateY(-6px) rotate(0.5deg); }
+  }
+  .animate-tilt { animation: tilt-hover 5s ease-in-out infinite; }
+  @keyframes shimmer-x {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, oklch(0.86 0.17 90 / 0.4), transparent);
+    background-size: 200% 100%;
+    animation: shimmer-x 3s linear infinite;
+  }
 }
 
