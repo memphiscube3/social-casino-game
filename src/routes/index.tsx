@@ -34,7 +34,7 @@ function Faq() {
   return (
     <div className="space-y-3">
       {faqs.map((f, i) => (
-        <div key={i} className="rounded-xl border border-[oklch(0.78_0.16_75/0.3)] bg-[oklch(0.22_0.06_25)] overflow-hidden">
+        <div key={i} className="rounded-xl border border-[oklch(0.78_0.16_75/0.3)] bg-[oklch(0.22_0.06_155)] overflow-hidden">
           <button onClick={() => setOpen(open === i ? null : i)} className="w-full flex items-center justify-between p-4 text-left">
             <span className="text-[oklch(0.95_0.04_85)] font-semibold">{f.q}</span>
             <ChevronDown className={`h-5 w-5 text-[oklch(0.88_0.16_85)] transition ${open === i ? "rotate-180" : ""}`} />
@@ -54,7 +54,7 @@ function Index() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <img src={heroBg} alt="" className="w-full h-full object-cover opacity-60" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.17_0.06_25/0.6)] via-transparent to-[oklch(0.17_0.06_25)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.17_0.06_155/0.6)] via-transparent to-[oklch(0.17_0.06_155)]" />
         </div>
         <div className="max-w-4xl mx-auto px-4 pt-10 sm:pt-16 text-center">
           <img src={logo} alt="Cirkusová štěstěna" className="mx-auto max-w-md w-full h-auto mb-4 drop-shadow-[0_0_30px_oklch(0.78_0.16_75/0.5)]" />
@@ -66,12 +66,12 @@ function Index() {
         <div className="max-w-4xl mx-auto px-4 pb-16">
           <WheelOfFortune />
           {!user && (
-            <div className="mt-8 max-w-xl mx-auto rounded-2xl bg-[oklch(0.22_0.06_25)] border border-[oklch(0.78_0.16_75/0.4)] p-6 text-center">
+            <div className="mt-8 max-w-xl mx-auto rounded-2xl bg-[oklch(0.22_0.06_155)] border border-[oklch(0.78_0.16_75/0.4)] p-6 text-center">
               <h3 className="text-xl text-gold mb-2">Uložte si pokrok</h3>
               <p className="text-sm text-[oklch(0.85_0.04_75)] mb-4">
                 Zaregistrujte se zdarma a vaše mince, historie a jackpoty zůstanou s vámi.
               </p>
-              <Link to="/prihlaseni" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-grad text-[oklch(0.2_0.06_25)] font-bold uppercase tracking-widest shadow-gold">
+              <Link to="/prihlaseni" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-grad text-[oklch(0.2_0.06_155)] font-bold uppercase tracking-widest shadow-gold">
                 <Sparkles className="h-4 w-4" /> Registrovat se
               </Link>
             </div>
@@ -89,9 +89,9 @@ function Index() {
             { icon: Trophy, t: "Ukládání pokroku", d: "Zaregistrujte se a vaše mince, výhry a historie zůstanou s vámi." },
             { icon: Sparkles, t: "Cirkusová atmosféra", d: "Unikátní design, ohnivé symboly a dramatické animace." },
           ].map((f, i) => (
-            <div key={i} className="rounded-2xl p-6 bg-[oklch(0.22_0.06_25)] border border-[oklch(0.78_0.16_75/0.3)] hover:border-[oklch(0.78_0.16_75/0.7)] transition">
+            <div key={i} className="rounded-2xl p-6 bg-[oklch(0.22_0.06_155)] border border-[oklch(0.78_0.16_75/0.3)] hover:border-[oklch(0.78_0.16_75/0.7)] transition">
               <div className="w-12 h-12 rounded-full bg-gold-grad flex items-center justify-center mb-4">
-                <f.icon className="h-6 w-6 text-[oklch(0.2_0.06_25)]" />
+                <f.icon className="h-6 w-6 text-[oklch(0.2_0.06_155)]" />
               </div>
               <h3 className="text-lg text-gold mb-2">{f.t}</h3>
               <p className="text-sm text-[oklch(0.85_0.04_75)] leading-relaxed">{f.d}</p>
@@ -109,7 +109,7 @@ function Index() {
             { n: "02", t: "Roztočte kolo", d: "Stiskněte velké zlaté tlačítko a sledujte, jak se cirkusové kolo štěstí roztočí pod zlatým ukazatelem." },
             { n: "03", t: "Vyhrávejte mince", d: "Kolo se zastaví na jednom z 8 sektorů. Výhra = sázka × multiplikátor. JACKPOT vrací až ×100!" },
           ].map((s) => (
-            <div key={s.n} className="rounded-2xl p-6 bg-gradient-to-br from-[oklch(0.28_0.12_25)] to-[oklch(0.18_0.06_25)] border border-[oklch(0.78_0.16_75/0.4)] relative overflow-hidden">
+            <div key={s.n} className="rounded-2xl p-6 bg-gradient-to-br from-[oklch(0.28_0.12_155)] to-[oklch(0.18_0.06_155)] border border-[oklch(0.78_0.16_75/0.4)] relative overflow-hidden">
               <div className="absolute -top-2 -right-2 text-7xl font-black text-gold opacity-20">{s.n}</div>
               <h3 className="text-xl text-gold mb-3 relative">{s.t}</h3>
               <p className="text-sm text-[oklch(0.85_0.04_75)] relative leading-relaxed">{s.d}</p>
@@ -126,7 +126,7 @@ function Index() {
 
       {/* DISCLAIMER */}
       <section className="max-w-5xl mx-auto px-4 pb-16">
-        <div className="rounded-2xl bg-[oklch(0.22_0.06_25)] border border-[oklch(0.55_0.22_30/0.5)] p-6 text-center">
+        <div className="rounded-2xl bg-[oklch(0.22_0.06_155)] border border-[oklch(0.55_0.22_30/0.5)] p-6 text-center">
           <p className="text-sm text-[oklch(0.9_0.04_75)] leading-relaxed">
             <strong className="text-gold">Důležité upozornění:</strong> Cirkusová štěstěna je sociální kasino a není hazardní hrou o reálné peníze.
             Veškeré virtuální mince nemají peněžní hodnotu a nelze je vyměnit za peníze, zboží ani služby. Hra je určena pouze pro osoby starší 18 let.
