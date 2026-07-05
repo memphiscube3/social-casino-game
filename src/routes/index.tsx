@@ -295,34 +295,39 @@ function Index() {
         </div>
       </section>
 
-      {/* ========== KOLO ŠTĚSTÍ (centrální hra) ========== */}
-      <section id="kolo" className="relative overflow-hidden py-16">
+      {/* ========== CTA — KOLO ŠTĚSTÍ ========== */}
+      <section className="relative overflow-hidden py-16">
         <div className="absolute inset-0 -z-10 bg-jungle-grad opacity-70" />
-        <div className="max-w-4xl mx-auto px-4 relative">
-          <h2 className="text-3xl sm:text-5xl text-center mb-4">
+        <div className="max-w-3xl mx-auto px-4 relative text-center">
+          <h2 className="text-3xl sm:text-5xl mb-4">
             <span className="text-gold">KOLO </span>
             <span className="text-[oklch(0.96_0.03_95)]">POKLADŮ</span>
           </h2>
-          <p className="text-center text-[oklch(0.85_0.04_75)] mb-10 max-w-xl mx-auto">
+          <p className="text-[oklch(0.85_0.04_75)] mb-8 max-w-xl mx-auto">
             Roztočte kolo pod pohledem strážce džungle a zjistěte, jaký poklad vám osud přisoudí.
           </p>
-          <WheelOfFortune />
+          <Link
+            to="/kolo"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-gold-grad text-[oklch(0.2_0.06_155)] font-bold uppercase tracking-widest text-base shadow-gold hover:brightness-110 hover:scale-[1.02] transition"
+          >
+            <Play className="h-5 w-5" /> Hrát kolo štěstí
+          </Link>
           {!user && (
-            <div className="mt-10 max-w-xl mx-auto rounded-2xl bg-[oklch(0.22_0.06_155)]/85 backdrop-blur border border-[oklch(0.75_0.22_135/0.5)] p-6 text-center shadow-lime relative overflow-hidden">
-              <div className="absolute inset-0 animate-shimmer opacity-30" />
-              <h3 className="text-2xl text-lime mb-2 relative" style={{ fontFamily: "'Bebas Neue', sans-serif", letterSpacing: "0.08em" }}>
+            <div className="mt-10 max-w-xl mx-auto rounded-2xl bg-[oklch(0.22_0.06_155)]/85 backdrop-blur border border-[oklch(0.75_0.22_135/0.5)] p-6 text-center shadow-lime">
+              <h3 className="text-2xl text-lime mb-2" style={{ fontFamily: "'Bebas Neue', sans-serif", letterSpacing: "0.08em" }}>
                 Uložte si pokrok
               </h3>
-              <p className="text-sm text-[oklch(0.85_0.04_95)] mb-4 relative">
+              <p className="text-sm text-[oklch(0.85_0.04_95)] mb-4">
                 Zaregistrujte se zdarma a vaše mince, historie i jackpoty zůstanou s vámi v táboře průzkumníků.
               </p>
-              <Link to="/prihlaseni" className="relative inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-lime-grad text-[oklch(0.15_0.06_155)] font-bold uppercase tracking-widest shadow-lime hover:brightness-110 transition">
+              <Link to="/prihlaseni" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-lime-grad text-[oklch(0.15_0.06_155)] font-bold uppercase tracking-widest shadow-lime hover:brightness-110 transition">
                 <Sparkles className="h-4 w-4" /> Registrovat se
               </Link>
             </div>
           )}
         </div>
       </section>
+
 
       {/* ========== 3 NOMINACE ========== */}
       <section className="relative overflow-hidden py-16">
