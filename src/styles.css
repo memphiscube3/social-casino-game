@@ -272,7 +272,7 @@
 }
 
 .jungle-frame {
-  border-image-source: url('/src/assets/jungle-frame.png');
+  border-image-source: url('./assets/jungle-frame.png');
   border-image-slice: 160 fill;
   border-image-width: 56px;
   border-image-repeat: round stretch;
