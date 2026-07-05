@@ -161,7 +161,7 @@ export function WheelOfFortune() {
 
   return (
     <div className="max-w-3xl mx-auto">
-      <div className="jungle-frame" style={{ borderImageSource: `url(${jungleFrame})` }}>
+      <div className="jungle-frame">
         <div className="bg-gradient-to-b from-[oklch(0.28_0.14_155)] to-[oklch(0.18_0.08_155)] p-5 sm:p-8">
           <div className="vine-divider vine-divider-animated mb-4" />
 
