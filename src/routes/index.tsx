@@ -98,7 +98,7 @@ function Index() {
             { icon: Coins, t: "Zcela zdarma", d: "Žádné vklady, žádné mikrotransakce. Hrajte tak dlouho, jak chcete." },
             { icon: Shield, t: "Bezpečné", d: "Sociální kasino bez reálných peněz. Pouze virtuální mince pro zábavu." },
             { icon: Trophy, t: "Ukládání pokroku", d: "Zaregistrujte se a vaše mince, výhry a historie zůstanou s vámi." },
-            { icon: Sparkles, t: "Cirkusová atmosféra", d: "Unikátní design, ohnivé symboly a dramatické animace." },
+            { icon: Compass, t: "Atmosféra džungle", d: "Ztracené poklady, divoké tvory, elektrická zeleň a zlato. Dobrodružství v každém spinu." },
           ].map((f, i) => (
             <div key={i} className="rounded-2xl p-6 bg-[oklch(0.22_0.06_155)] border border-[oklch(0.78_0.16_75/0.3)] hover:border-[oklch(0.78_0.16_75/0.7)] transition">
               <div className="w-12 h-12 rounded-full bg-gold-grad flex items-center justify-center mb-4">
