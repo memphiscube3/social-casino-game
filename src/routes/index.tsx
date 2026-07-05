@@ -3,8 +3,8 @@ import { Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site-layout";
 import { WheelOfFortune } from "@/components/wheel-of-fortune";
 import { Sparkles, Coins, Shield, Trophy, ChevronDown, Leaf, Compass } from "lucide-react";
+import jungleLogo from "@/assets/jungle-logo.png";
 import { useAuth } from "@/hooks/use-auth";
-import { useState } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
