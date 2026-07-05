@@ -50,26 +50,39 @@ function Index() {
     <SiteLayout>
       {/* HERO + WHEEL */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <img src={heroBg} alt="" className="w-full h-full object-cover opacity-60" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.17_0.06_155/0.6)] via-transparent to-[oklch(0.17_0.06_155)]" />
-        </div>
-        <div className="max-w-4xl mx-auto px-4 pt-10 sm:pt-16 text-center">
-          <img src={logo} alt="Jungle Circle" className="mx-auto max-w-md w-full h-auto mb-4 drop-shadow-[0_0_30px_oklch(0.78_0.16_75/0.5)]" />
-          <p className="text-lg sm:text-xl text-[oklch(0.92_0.04_85)] mb-2 font-medium">Roztočte kolo divoké džungle</p>
-          <p className="text-sm text-[oklch(0.8_0.04_75)] max-w-xl mx-auto mb-8">
-            Bez vkladů, bez reálných peněz — jen čistá radost ze hry a virtuální mince pro zábavu.
+        <div className="absolute inset-0 -z-10 bg-jungle-grad" />
+        {/* Vine silhouettes */}
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-40 mix-blend-screen"
+             style={{
+               backgroundImage:
+                 "radial-gradient(circle at 8% 10%, oklch(0.5 0.2 145 / 0.35), transparent 30%)," +
+                 "radial-gradient(circle at 92% 20%, oklch(0.45 0.2 155 / 0.35), transparent 32%)," +
+                 "radial-gradient(circle at 50% 100%, oklch(0.35 0.15 150 / 0.5), transparent 55%)",
+             }}
+        />
+        <div className="max-w-5xl mx-auto px-4 pt-12 sm:pt-20 text-center relative">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[oklch(0.28_0.09_155)]/70 border border-[oklch(0.75_0.22_135/0.45)] mb-6">
+            <Leaf className="h-3.5 w-3.5 text-[oklch(0.86_0.24_130)]" />
+            <span className="text-xs uppercase tracking-[0.3em] text-[oklch(0.86_0.24_130)] font-semibold">Vstupte do džungle</span>
+          </div>
+          <h1 className="mb-4" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+            <span className="block text-6xl sm:text-8xl md:text-9xl leading-[0.85] text-gold drop-shadow-[0_8px_30px_oklch(0.5_0.15_60/0.6)]">JUNGLE</span>
+            <span className="block text-5xl sm:text-7xl md:text-8xl leading-[0.85] text-lime tracking-[0.15em] drop-shadow-[0_0_40px_oklch(0.75_0.24_135/0.6)]">CIRCLE</span>
+          </h1>
+          <p className="text-lg sm:text-xl text-[oklch(0.92_0.04_95)] mb-2 font-medium">Roztočte kolo divoké džungle</p>
+          <p className="text-sm text-[oklch(0.82_0.04_95)] max-w-xl mx-auto mb-10">
+            Poklad ztracené civilizace čeká. Bez vkladů, bez reálných peněz — jen dobrodružství a virtuální zlato.
           </p>
         </div>
-        <div className="max-w-4xl mx-auto px-4 pb-16">
+        <div className="max-w-4xl mx-auto px-4 pb-16 relative">
           <WheelOfFortune />
           {!user && (
-            <div className="mt-8 max-w-xl mx-auto rounded-2xl bg-[oklch(0.22_0.06_155)] border border-[oklch(0.78_0.16_75/0.4)] p-6 text-center">
-              <h3 className="text-xl text-gold mb-2">Uložte si pokrok</h3>
-              <p className="text-sm text-[oklch(0.85_0.04_75)] mb-4">
-                Zaregistrujte se zdarma a vaše mince, historie a jackpoty zůstanou s vámi.
+            <div className="mt-8 max-w-xl mx-auto rounded-2xl bg-[oklch(0.22_0.06_155)] border border-[oklch(0.75_0.22_135/0.45)] p-6 text-center shadow-lime">
+              <h3 className="text-2xl text-lime mb-2" style={{ fontFamily: "'Bebas Neue', sans-serif", letterSpacing: "0.08em" }}>Uložte si pokrok</h3>
+              <p className="text-sm text-[oklch(0.85_0.04_95)] mb-4">
+                Zaregistrujte se zdarma a vaše mince, historie i jackpoty zůstanou s vámi v táboře průzkumníků.
               </p>
-              <Link to="/prihlaseni" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-grad text-[oklch(0.2_0.06_155)] font-bold uppercase tracking-widest shadow-gold">
+              <Link to="/prihlaseni" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-lime-grad text-[oklch(0.15_0.06_155)] font-bold uppercase tracking-widest shadow-lime">
                 <Sparkles className="h-4 w-4" /> Registrovat se
               </Link>
             </div>
