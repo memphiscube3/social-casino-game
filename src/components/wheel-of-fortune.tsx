@@ -377,7 +377,6 @@ export function WheelOfFortune() {
               </button>
             </div>
           </div>
-        </div>
       </div>
 
       {/* Paytable */}
