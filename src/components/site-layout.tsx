@@ -38,7 +38,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-40 backdrop-blur-md bg-[oklch(0.17_0.06_155/0.85)] border-b border-[oklch(0.78_0.16_75/0.25)]">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
           <Link to="/" className="flex items-center gap-2">
-            <img src={logo} alt="Jungle Circle" className="h-12 w-auto drop-shadow-[0_0_10px_oklch(0.78_0.16_75/0.4)]" />
+            <BrandMark />
           </Link>
 
           <nav className="hidden md:flex items-center gap-6">
