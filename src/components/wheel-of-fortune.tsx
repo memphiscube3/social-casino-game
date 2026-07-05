@@ -257,9 +257,9 @@ export function WheelOfFortune() {
             >
               <defs>
                 <radialGradient id="wedgeRed" cx="0.5" cy="0.5" r="0.75">
-                  <stop offset="0%" stopColor="#e14a4a" />
-                  <stop offset="60%" stopColor="#a41f1f" />
-                  <stop offset="100%" stopColor="#4a0a0a" />
+                  <stop offset="0%" stopColor="#3fa063" />
+                  <stop offset="60%" stopColor="#1f6b3a" />
+                  <stop offset="100%" stopColor="#0a2a15" />
                 </radialGradient>
                 <radialGradient id="wedgeGold" cx="0.5" cy="0.5" r="0.75">
                   <stop offset="0%" stopColor="#ffe28a" />
