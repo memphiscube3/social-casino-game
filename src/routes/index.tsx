@@ -2,9 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site-layout";
 import { WheelOfFortune } from "@/components/wheel-of-fortune";
-import heroBg from "@/assets/hero-bg.jpg";
-import logo from "@/assets/logo.png";
-import { Sparkles, Coins, Shield, Trophy, ChevronDown } from "lucide-react";
+import { Sparkles, Coins, Shield, Trophy, ChevronDown, Leaf, Compass } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth";
 import { useState } from "react";
 
