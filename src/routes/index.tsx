@@ -1,7 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site-layout";
-import { WheelOfFortune } from "@/components/wheel-of-fortune";
-import { JungleAmbient, JungleLeaf, GoldCoin, Firefly } from "@/components/jungle-decor";
 import {
   Sparkles,
   Coins,
@@ -135,8 +133,6 @@ function Index() {
       {/* ========== HERO ========== */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10 bg-jungle-grad" />
-        <JungleAmbient />
-
         <div className="max-w-7xl mx-auto px-4 pt-14 sm:pt-20 pb-16 relative">
           <div className="grid lg:grid-cols-[1.2fr_1fr] gap-10 items-center">
             {/* Left: title + CTA */}
@@ -160,7 +156,7 @@ function Index() {
 
               <div className="flex flex-wrap gap-3 mb-6">
                 <a
-                  href="#kolo"
+                  href="/kolo"
                   className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-gold-grad text-[oklch(0.2_0.06_155)] font-bold uppercase tracking-widest text-sm shadow-gold hover:brightness-110 hover:scale-[1.02] transition"
                 >
                   <Play className="h-4 w-4" /> Roztočit kolo
@@ -189,11 +185,6 @@ function Index() {
                 height={896}
                 className="relative w-full max-w-md h-auto drop-shadow-[0_25px_60px_oklch(0.1_0.05_155/0.95)]"
               />
-              <GoldCoin className="top-[10%] left-[-5%]" size={44} delay={0} />
-              <GoldCoin className="bottom-[15%] right-[-2%]" size={36} delay={1.2} />
-              <GoldCoin className="top-[45%] right-[8%]" size={28} delay={2.4} />
-              <JungleLeaf className="top-[-5%] right-[10%] rotate-[45deg]" size={80} delay={0.5} />
-              <JungleLeaf className="bottom-[-5%] left-[5%] rotate-[-30deg]" size={70} delay={2} color="oklch(0.6 0.22 135)" />
             </div>
           </div>
         </div>
@@ -221,8 +212,6 @@ function Index() {
 
       {/* ========== POPIS ========== */}
       <section className="relative overflow-hidden">
-        <JungleLeaf className="top-10 left-[3%] rotate-[-15deg]" size={100} delay={0.5} />
-        <GoldCoin className="top-[30%] left-[6%]" size={40} delay={1.5} />
         <div className="max-w-4xl mx-auto px-4 py-16 relative">
           <h2 className="text-3xl sm:text-5xl mb-6">
             <span className="text-[oklch(0.96_0.03_95)]">POPIS </span>
@@ -248,10 +237,6 @@ function Index() {
       {/* ========== JAK HRÁT (3 kroky) ========== */}
       <section id="pravidla" className="relative overflow-hidden py-16">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,oklch(0.25_0.08_155/0.6),transparent_70%)]" />
-        <JungleLeaf className="top-8 right-[5%] rotate-[120deg]" size={110} delay={1} color="oklch(0.5 0.2 150)" />
-        <Firefly className="top-[20%] left-[10%]" delay={0} />
-        <Firefly className="bottom-[15%] right-[15%]" delay={2} size={5} />
-
         <div className="max-w-6xl mx-auto px-4 relative">
           <h2 className="text-3xl sm:text-5xl text-center mb-12">
             <span className="text-[oklch(0.96_0.03_95)]">JAK </span>
@@ -309,29 +294,32 @@ function Index() {
         </div>
       </section>
 
-      {/* ========== KOLO ŠTĚSTÍ (centrální hra) ========== */}
-      <section id="kolo" className="relative overflow-hidden py-16">
+      {/* ========== CTA — KOLO ŠTĚSTÍ ========== */}
+      <section className="relative overflow-hidden py-16">
         <div className="absolute inset-0 -z-10 bg-jungle-grad opacity-70" />
-        <JungleAmbient />
-        <div className="max-w-4xl mx-auto px-4 relative">
-          <h2 className="text-3xl sm:text-5xl text-center mb-4">
+        <div className="max-w-3xl mx-auto px-4 relative text-center">
+          <h2 className="text-3xl sm:text-5xl mb-4">
             <span className="text-gold">KOLO </span>
             <span className="text-[oklch(0.96_0.03_95)]">POKLADŮ</span>
           </h2>
-          <p className="text-center text-[oklch(0.85_0.04_75)] mb-10 max-w-xl mx-auto">
+          <p className="text-[oklch(0.85_0.04_75)] mb-8 max-w-xl mx-auto">
             Roztočte kolo pod pohledem strážce džungle a zjistěte, jaký poklad vám osud přisoudí.
           </p>
-          <WheelOfFortune />
+          <Link
+            to="/kolo"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-gold-grad text-[oklch(0.2_0.06_155)] font-bold uppercase tracking-widest text-base shadow-gold hover:brightness-110 hover:scale-[1.02] transition"
+          >
+            <Play className="h-5 w-5" /> Hrát kolo štěstí
+          </Link>
           {!user && (
-            <div className="mt-10 max-w-xl mx-auto rounded-2xl bg-[oklch(0.22_0.06_155)]/85 backdrop-blur border border-[oklch(0.75_0.22_135/0.5)] p-6 text-center shadow-lime relative overflow-hidden">
-              <div className="absolute inset-0 animate-shimmer opacity-30" />
-              <h3 className="text-2xl text-lime mb-2 relative" style={{ fontFamily: "'Bebas Neue', sans-serif", letterSpacing: "0.08em" }}>
+            <div className="mt-10 max-w-xl mx-auto rounded-2xl bg-[oklch(0.22_0.06_155)]/85 backdrop-blur border border-[oklch(0.75_0.22_135/0.5)] p-6 text-center shadow-lime">
+              <h3 className="text-2xl text-lime mb-2" style={{ fontFamily: "'Bebas Neue', sans-serif", letterSpacing: "0.08em" }}>
                 Uložte si pokrok
               </h3>
-              <p className="text-sm text-[oklch(0.85_0.04_95)] mb-4 relative">
+              <p className="text-sm text-[oklch(0.85_0.04_95)] mb-4">
                 Zaregistrujte se zdarma a vaše mince, historie i jackpoty zůstanou s vámi v táboře průzkumníků.
               </p>
-              <Link to="/prihlaseni" className="relative inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-lime-grad text-[oklch(0.15_0.06_155)] font-bold uppercase tracking-widest shadow-lime hover:brightness-110 transition">
+              <Link to="/prihlaseni" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-lime-grad text-[oklch(0.15_0.06_155)] font-bold uppercase tracking-widest shadow-lime hover:brightness-110 transition">
                 <Sparkles className="h-4 w-4" /> Registrovat se
               </Link>
             </div>
@@ -339,12 +327,9 @@ function Index() {
         </div>
       </section>
 
+
       {/* ========== 3 NOMINACE ========== */}
       <section className="relative overflow-hidden py-16">
-        <JungleLeaf className="top-[10%] left-[2%] rotate-[-30deg]" size={140} delay={0.8} />
-        <JungleLeaf className="bottom-[8%] right-[3%] rotate-[210deg]" size={120} delay={2.3} color="oklch(0.55 0.2 145)" />
-        <GoldCoin className="top-[40%] right-[8%]" size={44} delay={0.4} />
-
         <div className="max-w-6xl mx-auto px-4 relative">
           <h2 className="text-3xl sm:text-5xl mb-4 max-w-3xl">
             <span className="text-gold">3 NOMINACE</span>
@@ -390,10 +375,6 @@ function Index() {
 
       {/* ========== 3 LIGY ========== */}
       <section className="relative overflow-hidden py-16 bg-[oklch(0.14_0.05_155)]/70">
-        <Firefly className="top-[10%] left-[5%]" delay={0.3} />
-        <Firefly className="top-[60%] right-[8%]" delay={1.7} size={5} />
-        <JungleLeaf className="bottom-[5%] left-[3%] rotate-[60deg]" size={100} delay={1.5} />
-
         <div className="max-w-6xl mx-auto px-4 relative">
           <h2 className="text-3xl sm:text-5xl mb-4">
             <span className="text-gold">3 LIGY </span>
@@ -450,15 +431,11 @@ function Index() {
       {/* ========== JAK SE URČUJÍ VÍTĚZOVÉ ========== */}
       <section className="relative overflow-hidden py-16">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,oklch(0.28_0.09_155),transparent_70%)]" />
-        <JungleAmbient />
-
         <div className="max-w-6xl mx-auto px-4 relative">
           <div className="grid lg:grid-cols-[1fr_1.4fr] gap-10 items-center">
             <div className="relative flex items-center justify-center animate-tilt">
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,oklch(0.86_0.17_90/0.3),transparent_65%)] blur-2xl" />
               <img src={jungleLogo} alt="Jungle Circle" className="relative w-full max-w-sm h-auto drop-shadow-[0_20px_50px_oklch(0.1_0.05_155/0.9)]" />
-              <GoldCoin className="top-[15%] right-[5%]" size={38} delay={0.6} />
-              <GoldCoin className="bottom-[20%] left-[8%]" size={30} delay={1.8} />
             </div>
             <div>
               <h2 className="text-3xl sm:text-5xl mb-6">
@@ -490,7 +467,7 @@ function Index() {
 
               <div className="flex flex-wrap gap-3 mt-8">
                 <a
-                  href="#kolo"
+                  href="/kolo"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-grad text-[oklch(0.2_0.06_155)] font-bold uppercase tracking-widest text-sm shadow-gold hover:brightness-110 hover:scale-[1.02] transition"
                 >
                   <Play className="h-4 w-4" /> Roztočit kolo

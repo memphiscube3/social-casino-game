@@ -18,6 +18,7 @@ import { Route as PodminkyRouteImport } from './routes/podminky'
 import { Route as OchranaOsobnichUdajuRouteImport } from './routes/ochrana-osobnich-udaju'
 import { Route as ONasRouteImport } from './routes/o-nas'
 import { Route as KontaktRouteImport } from './routes/kontakt'
+import { Route as KoloRouteImport } from './routes/kolo'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as IndexRouteImport } from './routes/index'
@@ -67,6 +68,11 @@ const KontaktRoute = KontaktRouteImport.update({
   path: '/kontakt',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KoloRoute = KoloRouteImport.update({
+  id: '/kolo',
+  path: '/kolo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cookies': typeof CookiesRoute
   '/faq': typeof FaqRoute
+  '/kolo': typeof KoloRoute
   '/kontakt': typeof KontaktRoute
   '/o-nas': typeof ONasRoute
   '/ochrana-osobnich-udaju': typeof OchranaOsobnichUdajuRoute
@@ -101,6 +108,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cookies': typeof CookiesRoute
   '/faq': typeof FaqRoute
+  '/kolo': typeof KoloRoute
   '/kontakt': typeof KontaktRoute
   '/o-nas': typeof ONasRoute
   '/ochrana-osobnich-udaju': typeof OchranaOsobnichUdajuRoute
@@ -116,6 +124,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/cookies': typeof CookiesRoute
   '/faq': typeof FaqRoute
+  '/kolo': typeof KoloRoute
   '/kontakt': typeof KontaktRoute
   '/o-nas': typeof ONasRoute
   '/ochrana-osobnich-udaju': typeof OchranaOsobnichUdajuRoute
@@ -132,6 +141,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cookies'
     | '/faq'
+    | '/kolo'
     | '/kontakt'
     | '/o-nas'
     | '/ochrana-osobnich-udaju'
@@ -146,6 +156,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cookies'
     | '/faq'
+    | '/kolo'
     | '/kontakt'
     | '/o-nas'
     | '/ochrana-osobnich-udaju'
@@ -160,6 +171,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cookies'
     | '/faq'
+    | '/kolo'
     | '/kontakt'
     | '/o-nas'
     | '/ochrana-osobnich-udaju'
@@ -175,6 +187,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CookiesRoute: typeof CookiesRoute
   FaqRoute: typeof FaqRoute
+  KoloRoute: typeof KoloRoute
   KontaktRoute: typeof KontaktRoute
   ONasRoute: typeof ONasRoute
   OchranaOsobnichUdajuRoute: typeof OchranaOsobnichUdajuRoute
@@ -251,6 +264,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KontaktRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/kolo': {
+      id: '/kolo'
+      path: '/kolo'
+      fullPath: '/kolo'
+      preLoaderRoute: typeof KoloRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/faq': {
       id: '/faq'
       path: '/faq'
@@ -279,6 +299,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CookiesRoute: CookiesRoute,
   FaqRoute: FaqRoute,
+  KoloRoute: KoloRoute,
   KontaktRoute: KontaktRoute,
   ONasRoute: ONasRoute,
   OchranaOsobnichUdajuRoute: OchranaOsobnichUdajuRoute,
