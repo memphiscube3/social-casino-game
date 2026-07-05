@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site-layout";
-import { WheelOfFortune } from "@/components/wheel-of-fortune";
 import {
   Sparkles,
   Coins,
