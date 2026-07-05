@@ -1,8 +1,20 @@
 import { Link } from "@tanstack/react-router";
 import { type ReactNode, useState } from "react";
 import { useAuth } from "@/hooks/use-auth";
-import logo from "@/assets/logo.png";
-import { Menu, X, Coins, LogOut, User as UserIcon } from "lucide-react";
+import { Menu, X, Coins, LogOut, User as UserIcon, Leaf } from "lucide-react";
+
+function BrandMark({ size = "md" }: { size?: "md" | "lg" }) {
+  const s = size === "lg" ? "text-4xl sm:text-6xl" : "text-2xl";
+  return (
+    <div className="flex items-center gap-2">
+      <Leaf className={`${size === "lg" ? "h-10 w-10" : "h-6 w-6"} text-[oklch(0.86_0.24_130)] drop-shadow-[0_0_10px_oklch(0.75_0.24_135/0.7)] -rotate-12 animate-vine`} />
+      <div className="leading-none">
+        <div className={`${s} font-bold tracking-tight text-gold`} style={{ fontFamily: "'Bebas Neue', sans-serif" }}>JUNGLE</div>
+        <div className={`${size === "lg" ? "text-xl sm:text-3xl" : "text-sm"} font-bold text-lime tracking-[0.35em] -mt-1`} style={{ fontFamily: "'Bebas Neue', sans-serif" }}>CIRCLE</div>
+      </div>
+    </div>
+  );
+}
 
 const nav = [
   { to: "/", label: "Kolo štěstí" },
@@ -19,14 +31,14 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Bulb string ornament */}
-      <div className="h-3 bg-gradient-to-b from-[oklch(0.2_0.06_25)] to-transparent border-b border-[oklch(0.78_0.16_75/0.3)]">
+      <div className="h-3 bg-gradient-to-b from-[oklch(0.2_0.06_155)] to-transparent border-b border-[oklch(0.78_0.16_75/0.3)]">
         <div className="ring-bulbs h-3 animate-bulb opacity-90" />
       </div>
 
-      <header className="sticky top-0 z-40 backdrop-blur-md bg-[oklch(0.17_0.06_25/0.85)] border-b border-[oklch(0.78_0.16_75/0.25)]">
+      <header className="sticky top-0 z-40 backdrop-blur-md bg-[oklch(0.17_0.06_155/0.85)] border-b border-[oklch(0.78_0.16_75/0.25)]">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
           <Link to="/" className="flex items-center gap-2">
-            <img src={logo} alt="Cirkusová štěstěna" className="h-12 w-auto drop-shadow-[0_0_10px_oklch(0.78_0.16_75/0.4)]" />
+            <BrandMark />
           </Link>
 
           <nav className="hidden md:flex items-center gap-6">
@@ -44,7 +56,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
 
           <div className="flex items-center gap-3">
             {profile && (
-              <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[oklch(0.28_0.12_25)] border border-[oklch(0.78_0.16_75/0.5)]">
+              <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[oklch(0.28_0.12_155)] border border-[oklch(0.78_0.16_75/0.5)]">
                 <Coins className="h-4 w-4 text-[oklch(0.88_0.16_85)]" />
                 <span className="text-sm font-semibold text-gold">{profile.coins.toLocaleString("cs-CZ")}</span>
               </div>
@@ -61,7 +73,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             ) : (
               <Link
                 to="/prihlaseni"
-                className="hidden sm:inline-flex px-4 py-2 rounded-md bg-gold-grad text-[oklch(0.2_0.05_25)] text-sm font-bold shadow-gold hover:brightness-110 transition"
+                className="hidden sm:inline-flex px-4 py-2 rounded-md bg-gold-grad text-[oklch(0.2_0.05_155)] text-sm font-bold shadow-gold hover:brightness-110 transition"
               >
                 Přihlásit
               </Link>
@@ -72,7 +84,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           </div>
         </div>
         {open && (
-          <div className="md:hidden border-t border-[oklch(0.78_0.16_75/0.2)] bg-[oklch(0.18_0.06_25)]">
+          <div className="md:hidden border-t border-[oklch(0.78_0.16_75/0.2)] bg-[oklch(0.18_0.06_155)]">
             <div className="px-4 py-3 flex flex-col gap-3">
               {nav.map((n) => (
                 <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="py-1 text-[oklch(0.9_0.04_75)]">
@@ -94,12 +106,12 @@ export function SiteLayout({ children }: { children: ReactNode }) {
 
       <main className="flex-1">{children}</main>
 
-      <footer className="mt-20 border-t border-[oklch(0.78_0.16_75/0.25)] bg-[oklch(0.14_0.05_25)]">
+      <footer className="mt-20 border-t border-[oklch(0.78_0.16_75/0.25)] bg-[oklch(0.14_0.05_155)]">
         <div className="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-4 gap-8">
           <div>
-            <img src={logo} alt="" className="h-16 w-auto mb-3" />
-            <p className="text-xs text-[oklch(0.75_0.04_75)] leading-relaxed">
-              Sociální kasino zdarma. Bez reálných peněz, bez vkladů, bez výher. Pouze pro zábavu.
+            <div className="mb-3"><BrandMark /></div>
+            <p className="text-xs text-[oklch(0.75_0.04_95)] leading-relaxed">
+              Sociální kasino v duchu divoké džungle. Bez reálných peněz, bez vkladů, bez výher. Pouze pro zábavu.
             </p>
           </div>
           <div>
@@ -130,7 +142,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         </div>
         <div className="border-t border-[oklch(0.78_0.16_75/0.15)] py-5 text-center text-xs text-[oklch(0.7_0.04_75)] px-4">
           <p className="mb-1">⚠ Hra je určena pouze pro osoby starší 18 let.</p>
-          <p>© {new Date().getFullYear()} Cirkusová štěstěna — Sociální kasino. Virtuální mince nemají peněžní hodnotu.</p>
+          <p>© {new Date().getFullYear()} Jungle Circle — Sociální kasino. Virtuální mince nemají peněžní hodnotu.</p>
         </div>
       </footer>
     </div>

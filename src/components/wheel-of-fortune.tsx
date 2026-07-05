@@ -161,7 +161,7 @@ export function WheelOfFortune() {
   return (
     <div className="max-w-3xl mx-auto">
       <div className="rounded-3xl p-1 bg-gold-grad shadow-gold">
-        <div className="rounded-3xl bg-gradient-to-b from-[oklch(0.28_0.14_25)] to-[oklch(0.18_0.08_25)] p-5 sm:p-8 border border-[oklch(0.88_0.16_85/0.3)]">
+        <div className="rounded-3xl bg-gradient-to-b from-[oklch(0.28_0.14_155)] to-[oklch(0.18_0.08_155)] p-5 sm:p-8 border border-[oklch(0.88_0.16_85/0.3)]">
           <div className="ring-bulbs h-3 animate-bulb mb-4 rounded-full" />
 
           <div className="flex items-center justify-between mb-4 gap-3">
@@ -362,7 +362,7 @@ export function WheelOfFortune() {
             <button
               onClick={spin}
               disabled={spinning || coins < bet}
-              className="relative px-10 py-4 rounded-xl bg-gold-grad text-[oklch(0.2_0.06_25)] text-lg uppercase tracking-widest font-extrabold shadow-gold disabled:opacity-50 hover:brightness-110 active:scale-95 transition border-2 border-[oklch(0.5_0.12_55)]"
+              className="relative px-10 py-4 rounded-xl bg-gold-grad text-[oklch(0.2_0.06_155)] text-lg uppercase tracking-widest font-extrabold shadow-gold disabled:opacity-50 hover:brightness-110 active:scale-95 transition border-2 border-[oklch(0.5_0.12_55)]"
             >
               {spinning ? "Točí se…" : "Roztočit"}
             </button>
@@ -371,7 +371,7 @@ export function WheelOfFortune() {
               <button
                 onClick={topUp}
                 disabled={spinning}
-                className="px-4 py-2 rounded-lg bg-[oklch(0.4_0.18_25)] hover:bg-[oklch(0.45_0.2_25)] border border-[oklch(0.78_0.16_75/0.5)] text-sm text-[oklch(0.95_0.04_85)] font-semibold disabled:opacity-50"
+                className="px-4 py-2 rounded-lg bg-[oklch(0.4_0.18_155)] hover:bg-[oklch(0.45_0.2_155)] border border-[oklch(0.78_0.16_75/0.5)] text-sm text-[oklch(0.95_0.04_85)] font-semibold disabled:opacity-50"
               >
                 +500 zdarma
               </button>
@@ -381,7 +381,7 @@ export function WheelOfFortune() {
       </div>
 
       {/* Paytable */}
-      <div className="mt-6 rounded-2xl bg-[oklch(0.2_0.06_25)] border border-[oklch(0.78_0.16_75/0.3)] p-5">
+      <div className="mt-6 rounded-2xl bg-[oklch(0.2_0.06_155)] border border-[oklch(0.78_0.16_75/0.3)] p-5">
         <h3 className="text-gold text-sm uppercase tracking-widest mb-3">Výplaty (sázka × multiplikátor)</h3>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {SECTORS.map((s, i) => (

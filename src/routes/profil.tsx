@@ -7,7 +7,7 @@ import { Coins, Trophy, TrendingUp, Repeat, LogOut, Trash2 } from "lucide-react"
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/profil")({
-  head: () => ({ meta: [{ title: "Profil — Cirkusová štěstěna" }] }),
+  head: () => ({ meta: [{ title: "Profil — Jungle Circle" }] }),
   component: Profile,
 });
 
@@ -59,7 +59,7 @@ function Profile() {
   const achievements = [
     { t: "První točení", got: profile.total_spins >= 1 },
     { t: "Veterán (50 točení)", got: profile.total_spins >= 50 },
-    { t: "Cirkusový mistr (500 točení)", got: profile.total_spins >= 500 },
+    { t: "Džunglový mistr (500 točení)", got: profile.total_spins >= 500 },
     { t: "Šťastlivec (první výhra)", got: profile.total_wins >= 1 },
     { t: "Velká výhra 1000+", got: profile.biggest_win >= 1000 },
     { t: "Bohatý ringmaster (5000+ mincí)", got: profile.coins >= 5000 },
@@ -75,7 +75,7 @@ function Profile() {
   return (
     <SiteLayout>
       <div className="max-w-5xl mx-auto px-4 py-10">
-        <div className="rounded-2xl bg-gradient-to-br from-[oklch(0.28_0.12_25)] to-[oklch(0.18_0.06_25)] border border-[oklch(0.78_0.16_75/0.4)] p-6 sm:p-8 mb-6">
+        <div className="rounded-2xl bg-gradient-to-br from-[oklch(0.28_0.12_155)] to-[oklch(0.18_0.06_155)] border border-[oklch(0.78_0.16_75/0.4)] p-6 sm:p-8 mb-6">
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div>
               <p className="text-xs uppercase tracking-widest text-[oklch(0.8_0.04_75)]">Vítejte zpět</p>
@@ -109,7 +109,7 @@ function Profile() {
               key={t.k}
               onClick={() => setTab(t.k as any)}
               className={`px-4 py-2 rounded-lg text-sm uppercase tracking-widest whitespace-nowrap ${
-                tab === t.k ? "bg-gold-grad text-[oklch(0.2_0.06_25)]" : "bg-[oklch(0.22_0.06_25)] text-[oklch(0.85_0.04_75)] border border-[oklch(0.78_0.16_75/0.3)]"
+                tab === t.k ? "bg-gold-grad text-[oklch(0.2_0.06_155)]" : "bg-[oklch(0.22_0.06_155)] text-[oklch(0.85_0.04_75)] border border-[oklch(0.78_0.16_75/0.3)]"
               }`}
             >
               {t.l}
@@ -118,17 +118,17 @@ function Profile() {
         </div>
 
         {tab === "profile" && (
-          <div className="rounded-2xl bg-[oklch(0.22_0.06_25)] border border-[oklch(0.78_0.16_75/0.3)] p-6">
+          <div className="rounded-2xl bg-[oklch(0.22_0.06_155)] border border-[oklch(0.78_0.16_75/0.3)] p-6">
             <h2 className="text-xl text-gold mb-3">Začít hrát</h2>
             <p className="text-sm text-[oklch(0.85_0.04_75)] mb-4">Vaše mince a pokrok se ukládají automaticky.</p>
-            <Link to="/" className="inline-flex px-6 py-3 rounded-lg bg-gold-grad text-[oklch(0.2_0.06_25)] font-bold uppercase tracking-widest shadow-gold">
+            <Link to="/" className="inline-flex px-6 py-3 rounded-lg bg-gold-grad text-[oklch(0.2_0.06_155)] font-bold uppercase tracking-widest shadow-gold">
               Otevřít kolo štěstí
             </Link>
           </div>
         )}
 
         {tab === "history" && (
-          <div className="rounded-2xl bg-[oklch(0.22_0.06_25)] border border-[oklch(0.78_0.16_75/0.3)] p-4 sm:p-6">
+          <div className="rounded-2xl bg-[oklch(0.22_0.06_155)] border border-[oklch(0.78_0.16_75/0.3)] p-4 sm:p-6">
             <h2 className="text-xl text-gold mb-4">Posledních 50 točení</h2>
             {history.length === 0 ? (
               <p className="text-sm text-[oklch(0.8_0.04_75)]">Zatím žádná historie. Začněte hrát!</p>
@@ -169,7 +169,7 @@ function Profile() {
               <div
                 key={a.t}
                 className={`rounded-xl p-4 border flex items-center gap-3 ${
-                  a.got ? "bg-[oklch(0.28_0.14_70/0.3)] border-[oklch(0.78_0.16_75/0.6)]" : "bg-[oklch(0.2_0.04_25)] border-[oklch(0.4_0.05_25)] opacity-60"
+                  a.got ? "bg-[oklch(0.28_0.14_70/0.3)] border-[oklch(0.78_0.16_75/0.6)]" : "bg-[oklch(0.2_0.04_155)] border-[oklch(0.4_0.05_155)] opacity-60"
                 }`}
               >
                 <Trophy className={`h-6 w-6 ${a.got ? "text-[oklch(0.88_0.16_85)]" : "text-[oklch(0.5_0.04_75)]"}`} />
@@ -180,14 +180,14 @@ function Profile() {
         )}
 
         {tab === "settings" && (
-          <div className="rounded-2xl bg-[oklch(0.22_0.06_25)] border border-[oklch(0.78_0.16_75/0.3)] p-6 space-y-4">
+          <div className="rounded-2xl bg-[oklch(0.22_0.06_155)] border border-[oklch(0.78_0.16_75/0.3)] p-6 space-y-4">
             <h2 className="text-xl text-gold">Nastavení účtu</h2>
             <p className="text-sm text-[oklch(0.85_0.04_75)]">Email: <strong>{profile.email}</strong></p>
             <p className="text-sm text-[oklch(0.85_0.04_75)]">Přezdívka: <strong>{profile.username}</strong></p>
             <hr className="border-[oklch(0.78_0.16_75/0.2)]" />
             <h3 className="text-[oklch(0.95_0.04_85)] font-semibold">Smazat účet</h3>
             <p className="text-sm text-[oklch(0.8_0.04_75)]">Trvalé smazání účtu a všech dat. Akce je nevratná.</p>
-            <button onClick={deleteAccount} className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[oklch(0.45_0.2_25)] hover:bg-[oklch(0.5_0.22_25)] text-[oklch(0.98_0.02_85)] font-semibold">
+            <button onClick={deleteAccount} className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[oklch(0.45_0.2_155)] hover:bg-[oklch(0.5_0.22_155)] text-[oklch(0.98_0.02_85)] font-semibold">
               <Trash2 className="h-4 w-4" /> Smazat účet
             </button>
           </div>

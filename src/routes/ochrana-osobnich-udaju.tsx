@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { InfoPage } from "@/components/info-page";
 
 export const Route = createFileRoute("/ochrana-osobnich-udaju")({
-  head: () => ({ meta: [{ title: "Ochrana osobních údajů — Cirkusová štěstěna" }] }),
+  head: () => ({ meta: [{ title: "Ochrana osobních údajů — Jungle Circle" }] }),
   component: () => (
     <InfoPage title="Ochrana osobních údajů">
       <p>Vážíme si vašeho soukromí. Tento dokument popisuje, jaká data zpracováváme a proč.</p>
