@@ -28,7 +28,14 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col relative">
+      {/* Fixed jungle background */}
+      <div
+        aria-hidden
+        className="fixed inset-0 -z-10 bg-cover bg-center"
+        style={{ backgroundImage: `url(${jungleBg})` }}
+      />
+      <div aria-hidden className="fixed inset-0 -z-10 bg-gradient-to-b from-[oklch(0.12_0.05_155/0.85)] via-[oklch(0.15_0.06_155/0.75)] to-[oklch(0.1_0.04_155/0.95)]" />
       {/* Bulb string ornament */}
       <div className="h-3 bg-gradient-to-b from-[oklch(0.2_0.06_155)] to-transparent border-b border-[oklch(0.78_0.16_75/0.3)]">
         <div className="ring-bulbs h-3 animate-bulb opacity-90" />
