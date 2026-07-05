@@ -151,9 +151,12 @@
   }
 
   body {
-    background-color: var(--color-background);
+    background-color: transparent;
     color: var(--color-foreground);
     font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+  }
+  html {
+    background-color: var(--color-background);
     background-image:
       radial-gradient(ellipse 80% 60% at 20% 0%, oklch(0.32 0.12 145 / 0.55), transparent 60%),
       radial-gradient(ellipse 70% 50% at 90% 30%, oklch(0.28 0.14 155 / 0.5), transparent 60%),
