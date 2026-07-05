@@ -4,7 +4,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/kontakt")({
-  head: () => ({ meta: [{ title: "Kontakt — Cirkusová štěstěna" }, { name: "description", content: "Kontaktujte podporu Cirkusové štěstěny." }] }),
+  head: () => ({ meta: [{ title: "Kontakt — Jungle Circle" }, { name: "description", content: "Kontaktujte podporu Cirkusové štěstěny." }] }),
   component: ContactPage,
 });
 

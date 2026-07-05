@@ -2,11 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { InfoPage } from "@/components/info-page";
 
 export const Route = createFileRoute("/o-nas")({
-  head: () => ({ meta: [{ title: "O nás — Cirkusová štěstěna" }, { name: "description", content: "O sociálním kasinu Cirkusová štěstěna." }] }),
+  head: () => ({ meta: [{ title: "O nás — Jungle Circle" }, { name: "description", content: "O sociálním kasinu Jungle Circle." }] }),
   component: () => (
     <InfoPage title="O nás">
       <p>
-        Cirkusová štěstěna je bezplatné sociální kasino inspirované magickou atmosférou starých
+        Jungle Circle je bezplatné sociální kasino inspirované magickou atmosférou starých
         cirkusů — sametovými oponami, zlatým ornamentem, žárovkami nad arénou a tajemnými umělci.
       </p>
       <p>

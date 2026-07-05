@@ -7,7 +7,7 @@ import { Coins, Trophy, TrendingUp, Repeat, LogOut, Trash2 } from "lucide-react"
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/profil")({
-  head: () => ({ meta: [{ title: "Profil — Cirkusová štěstěna" }] }),
+  head: () => ({ meta: [{ title: "Profil — Jungle Circle" }] }),
   component: Profile,
 });
 
@@ -59,7 +59,7 @@ function Profile() {
   const achievements = [
     { t: "První točení", got: profile.total_spins >= 1 },
     { t: "Veterán (50 točení)", got: profile.total_spins >= 50 },
-    { t: "Cirkusový mistr (500 točení)", got: profile.total_spins >= 500 },
+    { t: "Džunglový mistr (500 točení)", got: profile.total_spins >= 500 },
     { t: "Šťastlivec (první výhra)", got: profile.total_wins >= 1 },
     { t: "Velká výhra 1000+", got: profile.biggest_win >= 1000 },
     { t: "Bohatý ringmaster (5000+ mincí)", got: profile.coins >= 5000 },
