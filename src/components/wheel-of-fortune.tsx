@@ -14,14 +14,14 @@ type Sector = {
 
 // Sectors in visual order clockwise starting from the top (12 o'clock).
 const SECTORS: Sector[] = [
-  { mult: 1,   label: "×1",       weight: 30, fill: "#c62828", text: "#ffe9a8" },
-  { mult: 10,  label: "×10",      weight: 3,  fill: "#f2c14b", text: "#4a1010" },
-  { mult: 2,   label: "×2",       weight: 15, fill: "#c62828", text: "#ffe9a8" },
-  { mult: 0,   label: "×0",       weight: 40, fill: "#f2c14b", text: "#4a1010" },
-  { mult: 3,   label: "×3",       weight: 8,  fill: "#c62828", text: "#ffe9a8" },
-  { mult: 25,  label: "×25",      weight: 1,  fill: "#f2c14b", text: "#4a1010" },
-  { mult: 5,   label: "×5",       weight: 5,  fill: "#c62828", text: "#ffe9a8" },
-  { mult: 100, label: "JACKPOT",  weight: 0.5, fill: "#f2c14b", text: "#4a1010" },
+  { mult: 1,   label: "×1",       weight: 30, fill: "#1f6b3a", text: "#f2e9c8" },
+  { mult: 10,  label: "×10",      weight: 3,  fill: "#f2c14b", text: "#1a3a1a" },
+  { mult: 2,   label: "×2",       weight: 15, fill: "#1f6b3a", text: "#f2e9c8" },
+  { mult: 0,   label: "×0",       weight: 40, fill: "#f2c14b", text: "#1a3a1a" },
+  { mult: 3,   label: "×3",       weight: 8,  fill: "#1f6b3a", text: "#f2e9c8" },
+  { mult: 25,  label: "×25",      weight: 1,  fill: "#f2c14b", text: "#1a3a1a" },
+  { mult: 5,   label: "×5",       weight: 5,  fill: "#1f6b3a", text: "#f2e9c8" },
+  { mult: 100, label: "JACKPOT",  weight: 0.5, fill: "#f2c14b", text: "#1a3a1a" },
 ];
 
 const N = SECTORS.length;
