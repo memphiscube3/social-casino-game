@@ -1,18 +1,17 @@
 import { Link } from "@tanstack/react-router";
 import { type ReactNode, useState } from "react";
 import { useAuth } from "@/hooks/use-auth";
-import { Menu, X, Coins, LogOut, User as UserIcon, Leaf } from "lucide-react";
+import { Menu, X, Coins, LogOut, User as UserIcon } from "lucide-react";
+import jungleLogo from "@/assets/jungle-logo.png";
+import jungleBg from "@/assets/jungle-bg.jpg";
 
-function BrandMark({ size = "md" }: { size?: "md" | "lg" }) {
-  const s = size === "lg" ? "text-4xl sm:text-6xl" : "text-2xl";
+function BrandMark({ className = "h-14" }: { className?: string }) {
   return (
-    <div className="flex items-center gap-2">
-      <Leaf className={`${size === "lg" ? "h-10 w-10" : "h-6 w-6"} text-[oklch(0.86_0.24_130)] drop-shadow-[0_0_10px_oklch(0.75_0.24_135/0.7)] -rotate-12 animate-vine`} />
-      <div className="leading-none">
-        <div className={`${s} font-bold tracking-tight text-gold`} style={{ fontFamily: "'Bebas Neue', sans-serif" }}>JUNGLE</div>
-        <div className={`${size === "lg" ? "text-xl sm:text-3xl" : "text-sm"} font-bold text-lime tracking-[0.35em] -mt-1`} style={{ fontFamily: "'Bebas Neue', sans-serif" }}>CIRCLE</div>
-      </div>
-    </div>
+    <img
+      src={jungleLogo}
+      alt="Jungle Circle"
+      className={`${className} w-auto drop-shadow-[0_6px_20px_oklch(0.15_0.05_155/0.9)]`}
+    />
   );
 }
 
@@ -30,6 +29,17 @@ export function SiteLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col">
+      {/* Fixed jungle background */}
+      <div
+        aria-hidden
+        className="fixed inset-0 bg-cover bg-center pointer-events-none"
+        style={{ backgroundImage: `url(${jungleBg})`, zIndex: -1 }}
+      />
+      <div
+        aria-hidden
+        className="fixed inset-0 pointer-events-none bg-gradient-to-b from-[oklch(0.1_0.05_155/0.75)] via-[oklch(0.12_0.06_155/0.6)] to-[oklch(0.08_0.04_155/0.92)]"
+        style={{ zIndex: -1 }}
+      />
       {/* Bulb string ornament */}
       <div className="h-3 bg-gradient-to-b from-[oklch(0.2_0.06_155)] to-transparent border-b border-[oklch(0.78_0.16_75/0.3)]">
         <div className="ring-bulbs h-3 animate-bulb opacity-90" />

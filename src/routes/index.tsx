@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site-layout";
 import { WheelOfFortune } from "@/components/wheel-of-fortune";
 import { Sparkles, Coins, Shield, Trophy, ChevronDown, Leaf, Compass } from "lucide-react";
+import jungleLogo from "@/assets/jungle-logo.png";
 import { useAuth } from "@/hooks/use-auth";
 import { useState } from "react";
 
@@ -65,10 +66,13 @@ function Index() {
             <Leaf className="h-3.5 w-3.5 text-[oklch(0.86_0.24_130)]" />
             <span className="text-xs uppercase tracking-[0.3em] text-[oklch(0.86_0.24_130)] font-semibold">Vstupte do džungle</span>
           </div>
-          <h1 className="mb-4" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-            <span className="block text-6xl sm:text-8xl md:text-9xl leading-[0.85] text-gold drop-shadow-[0_8px_30px_oklch(0.5_0.15_60/0.6)]">JUNGLE</span>
-            <span className="block text-5xl sm:text-7xl md:text-8xl leading-[0.85] text-lime tracking-[0.15em] drop-shadow-[0_0_40px_oklch(0.75_0.24_135/0.6)]">CIRCLE</span>
-          </h1>
+          <img
+            src={jungleLogo}
+            alt="Jungle Circle"
+            width={1536}
+            height={896}
+            className="mx-auto w-full max-w-2xl h-auto mb-6 drop-shadow-[0_20px_60px_oklch(0.1_0.05_155/0.9)]"
+          />
           <p className="text-lg sm:text-xl text-[oklch(0.92_0.04_95)] mb-2 font-medium">Roztočte kolo divoké džungle</p>
           <p className="text-sm text-[oklch(0.82_0.04_95)] max-w-xl mx-auto mb-10">
             Poklad ztracené civilizace čeká. Bez vkladů, bez reálných peněz — jen dobrodružství a virtuální zlato.
