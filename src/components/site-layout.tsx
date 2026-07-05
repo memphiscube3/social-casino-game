@@ -16,7 +16,8 @@ function BrandMark({ className = "h-14" }: { className?: string }) {
 }
 
 const nav = [
-  { to: "/", label: "Kolo štěstí" },
+  { to: "/", label: "Domů" },
+  { to: "/kolo", label: "Kolo štěstí" },
   { to: "/profil", label: "Profil" },
   { to: "/o-nas", label: "O nás" },
   { to: "/faq", label: "FAQ" },
