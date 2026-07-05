@@ -3,6 +3,7 @@ import { Coins, Minus, Plus } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import jungleFrame from "@/assets/jungle-frame.png";
 
 type Sector = {
   mult: number;
