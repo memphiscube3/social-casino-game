@@ -191,7 +191,7 @@ export function WheelOfFortune() {
                   </linearGradient>
                   <radialGradient id="ptrGem" cx="0.5" cy="0.4" r="0.6">
                     <stop offset="0%" stopColor="#ffd66b" />
-                    <stop offset="60%" stopColor="#c62828" />
+                    <stop offset="60%" stopColor="#1f6b3a" />
                     <stop offset="100%" stopColor="#3a0808" />
                   </radialGradient>
                 </defs>
@@ -228,7 +228,7 @@ export function WheelOfFortune() {
               {/* Outer gold rim */}
               <circle cx={CX} cy={CY} r={R + 14} fill="url(#rimGold)" stroke="#3a1a06" strokeWidth="2" filter="url(#dropSoft)" />
               {/* Inner rim well (darker groove) */}
-              <circle cx={CX} cy={CY} r={R + 4} fill="#2a0a0a" />
+              <circle cx={CX} cy={CY} r={R + 4} fill="#0a2a15" />
               {/* Bulbs around the rim */}
               {Array.from({ length: 24 }).map((_, i) => {
                 const a = (i / 24) * 2 * Math.PI - Math.PI / 2;
@@ -297,7 +297,7 @@ export function WheelOfFortune() {
                     <path
                       d={wedgePath(CX, CY, R, a1, a2)}
                       fill={isGold ? "url(#wedgeGold)" : "url(#wedgeRed)"}
-                      stroke="#2a0a0a"
+                      stroke="#0a2a15"
                       strokeWidth="1.5"
                     />
                     <text
@@ -309,7 +309,7 @@ export function WheelOfFortune() {
                       fontSize={s.mult === 100 ? 15 : 22}
                       fontWeight="900"
                       transform={`rotate(${mid} ${tx} ${ty})`}
-                      style={{ fontFamily: "Georgia, serif", paintOrder: "stroke", stroke: "#2a0a0a", strokeWidth: 1.2 }}
+                      style={{ fontFamily: "Georgia, serif", paintOrder: "stroke", stroke: "#0a2a15", strokeWidth: 1.2 }}
                     >
                       {s.label}
                     </text>
@@ -330,7 +330,7 @@ export function WheelOfFortune() {
 
               {/* Hub bevel */}
               <circle cx={CX} cy={CY} r={40} fill="url(#hubGold)" stroke="#3a1a06" strokeWidth="2" />
-              <circle cx={CX} cy={CY} r={30} fill="#4a1010" stroke="#f2c14b" strokeWidth="2" />
+              <circle cx={CX} cy={CY} r={30} fill="#0f3a1f" stroke="#f2c14b" strokeWidth="2" />
               <circle cx={CX} cy={CY} r={16} fill="url(#hubCenter)" stroke="#3a1a06" strokeWidth="1.5" />
               <circle cx={CX - 3} cy={CY - 4} r={4} fill="#fff" opacity="0.7" />
             </svg>
