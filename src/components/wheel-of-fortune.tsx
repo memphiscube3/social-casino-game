@@ -65,6 +65,8 @@ function wedgePath(cx: number, cy: number, r: number, a1: number, a2: number) {
 
 export function WheelOfFortune() {
   const { user, profile, refreshProfile } = useAuth();
+  const spinFn = useServerFn(spinWheel);
+  const topUpFn = useServerFn(claimTopUp);
   const [coins, setCoins] = useState(1000);
   const [bet, setBet] = useState(25);
   const [rotation, setRotation] = useState(0);
@@ -78,28 +80,16 @@ export function WheelOfFortune() {
     else if (!user) setCoins(getGuestCoins());
   }, [user, profile]);
 
-  const persist = async (newCoins: number, win: number, sectorIdx: number) => {
-    if (user) {
-      await supabase.from("profiles").update({
-        coins: newCoins,
-        total_spins: (profile?.total_spins ?? 0) + 1,
-        total_wins: (profile?.total_wins ?? 0) + (win > 0 ? 1 : 0),
-        biggest_win: Math.max(profile?.biggest_win ?? 0, win),
-      }).eq("id", user.id);
-      await supabase.from("game_history").insert({
-        user_id: user.id,
-        bet,
-        win,
-        symbols: [SECTORS[sectorIdx].label],
-        balance_after: newCoins,
-      });
-      refreshProfile();
-    } else {
-      setGuestCoins(newCoins);
-    }
+  const animateTo = (winnerIdx: number) => {
+    const sectorCenter = winnerIdx * SLICE + SLICE / 2;
+    const base = (360 - sectorCenter) % 360;
+    const currentMod = ((rotation % 360) + 360) % 360;
+    const delta = (base - currentMod + 360) % 360;
+    const target = rotation + delta + 360 * 6;
+    setRotation(target);
   };
 
-  const spin = () => {
+  const spin = async () => {
     if (spinning) return;
     if (coins < bet) {
       toast.error("Nedostatek mincí. Snižte sázku.");
@@ -107,26 +97,50 @@ export function WheelOfFortune() {
     }
     setLastWin(null);
     setSpinning(true);
+
+    if (user) {
+      // Server-authoritative spin: server picks the winner and updates balances.
+      try {
+        const res = await spinFn({ data: { bet } });
+        setCoins(res.balance_after + (0)); // will be corrected after animation
+        // Optimistically deduct bet visually while spinning.
+        setCoins((c) => c - bet);
+        animateTo(res.winnerIdx);
+        const t = setTimeout(() => {
+          const sector = SECTORS[res.winnerIdx];
+          setCoins(res.balance_after);
+          setLastWin(res.win);
+          setSpinning(false);
+          if (res.win > 0) {
+            setWinPulse(true);
+            setTimeout(() => setWinPulse(false), 1500);
+            if (sector.mult >= 25) toast.success(`🎉 ${sector.label}! Výhra ${res.win.toLocaleString("cs-CZ")} mincí!`, { duration: 4000 });
+            else toast.success(`Výhra ${res.win.toLocaleString("cs-CZ")} mincí!`, { duration: 2500 });
+          } else {
+            toast(`${sector.label} — bez výhry. Zkuste znovu!`, { duration: 2000 });
+          }
+          refreshProfile();
+        }, 4600);
+        timers.current.push(t);
+      } catch (e) {
+        setSpinning(false);
+        const msg = e instanceof Error ? e.message : "Chyba při točení";
+        toast.error(msg);
+      }
+      return;
+    }
+
+    // Guest (unauthenticated): fully client-side, balance stored in localStorage only.
     const afterBet = coins - bet;
     setCoins(afterBet);
-
     const winnerIdx = pickWinner();
-    // Center angle of winner sector (clockwise from top).
-    const sectorCenter = winnerIdx * SLICE + SLICE / 2;
-    // We rotate the wheel by R degrees clockwise. To land sectorCenter at top (0°),
-    // we need (sectorCenter + R) ≡ 0 mod 360  =>  R ≡ -sectorCenter mod 360.
-    // Add several full turns and normalize with current rotation for smooth continuation.
-    const base = (360 - sectorCenter) % 360;
-    const currentMod = ((rotation % 360) + 360) % 360;
-    const delta = (base - currentMod + 360) % 360;
-    const target = rotation + delta + 360 * 6; // 6 full spins
-    setRotation(target);
-
+    animateTo(winnerIdx);
     const t = setTimeout(() => {
       const sector = SECTORS[winnerIdx];
       const win = bet * sector.mult;
       const balance = afterBet + win;
       setCoins(balance);
+      setGuestCoins(balance);
       setLastWin(win);
       setSpinning(false);
       if (win > 0) {
@@ -137,22 +151,29 @@ export function WheelOfFortune() {
       } else {
         toast(`${sector.label} — bez výhry. Zkuste znovu!`, { duration: 2000 });
       }
-      persist(balance, win, winnerIdx);
     }, 4600);
     timers.current.push(t);
   };
 
   useEffect(() => () => timers.current.forEach(clearTimeout), []);
 
-  const topUp = () => {
-    const next = coins + 500;
-    setCoins(next);
+  const topUp = async () => {
     if (user) {
-      supabase.from("profiles").update({ coins: next }).eq("id", user.id).then(() => refreshProfile());
+      try {
+        const res = await topUpFn({});
+        setCoins(res.balance_after);
+        refreshProfile();
+        toast.success("+500 mincí zdarma!");
+      } catch (e) {
+        const msg = e instanceof Error ? e.message : "Bonus není dostupný";
+        toast.error(msg);
+      }
     } else {
+      const next = coins + 500;
+      setCoins(next);
       setGuestCoins(next);
+      toast.success("+500 mincí zdarma!");
     }
-    toast.success("+500 mincí zdarma!");
   };
 
   const SIZE = 420;
