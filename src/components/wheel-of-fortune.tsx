@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Coins, Minus, Plus } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth";
-import { supabase } from "@/integrations/supabase/client";
+import { useServerFn } from "@tanstack/react-start";
+import { spinWheel, claimTopUp } from "@/lib/wheel.functions";
 import { toast } from "sonner";
 
 
