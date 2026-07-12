@@ -375,60 +375,9 @@ function Index() {
         </div>
       </section>
 
-      {/* ========== 3 LIGY ========== */}
-      <section className="relative overflow-hidden py-16 bg-[oklch(0.14_0.05_155)]/70">
-        <div className="max-w-6xl mx-auto px-4 relative">
-          <h2 className="text-3xl sm:text-5xl mb-4">
-            <span className="text-gold">3 LIGY </span>
-            <span className="text-[oklch(0.96_0.03_95)]">JUNGLE CIRCLE</span>
-          </h2>
-          <p className="text-[oklch(0.85_0.04_75)] mb-10 max-w-3xl leading-relaxed">
-            Od 1. srpna platí v Jungle Circle systém 3 lig. Hráči jsou rozděleni podle svého statusu. Vítěz první ligy získává až <span className="text-gold font-semibold">10 000 mincí</span>!
-          </p>
+      {/* ========== ŽIVÝ ŽEBŘÍČEK ========== */}
+      <LiveLeaderboardSection />
 
-          <div className="grid md:grid-cols-3 gap-5">
-            {leagues.map((lg) => (
-              <div key={lg.tier} className="rounded-2xl bg-[oklch(0.2_0.06_155)]/90 backdrop-blur border border-[oklch(0.78_0.16_75/0.35)] p-5 hover:border-[oklch(0.86_0.17_90)] transition">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-full bg-gold-grad flex items-center justify-center shadow-gold text-[oklch(0.15_0.05_155)] font-black" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-                    {lg.tier}
-                  </div>
-                  <div>
-                    <div className="text-gold font-bold text-lg leading-tight">{lg.name}</div>
-                    <div className="text-xs text-[oklch(0.75_0.04_95)]">Fond: <span className="text-lime font-semibold">{lg.prize}</span></div>
-                  </div>
-                </div>
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="text-[oklch(0.75_0.04_95)] text-xs uppercase tracking-wider border-b border-[oklch(0.78_0.16_75/0.2)]">
-                      <th className="text-left py-2 font-medium">#</th>
-                      <th className="text-left py-2 font-medium">Nick</th>
-                      <th className="text-right py-2 font-medium">Body</th>
-                      <th className="text-right py-2 font-medium">Cena</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-[oklch(0.92_0.04_95)]">
-                    {lg.players.map((p) => (
-                      <tr key={p.pos} className="border-b border-[oklch(0.78_0.16_75/0.08)] last:border-0">
-                        <td className="py-2 text-gold font-bold">{p.pos}</td>
-                        <td className="py-2">{p.nick}</td>
-                        <td className="py-2 text-right">{p.pts}</td>
-                        <td className="py-2 text-right text-lime font-semibold">{p.reward}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-                <p className="mt-3 text-xs text-[oklch(0.75_0.04_95)] leading-snug">
-                  Účastní se hráči se statusem: <span className="text-[oklch(0.92_0.04_95)]">{lg.status}</span>
-                </p>
-              </div>
-            ))}
-          </div>
-          <p className="mt-6 text-xs text-[oklch(0.75_0.04_95)] text-center max-w-3xl mx-auto">
-            Za aktualizacemi žebříčku můžete sledovat v reálném čase na hlavní stránce. Hodně štěstí, průzkumníku!
-          </p>
-        </div>
-      </section>
 
       {/* ========== JAK SE URČUJÍ VÍTĚZOVÉ ========== */}
       <section className="relative overflow-hidden py-16">
