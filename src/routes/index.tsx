@@ -20,7 +20,9 @@ import {
 } from "lucide-react";
 import jungleLogo from "@/assets/jungle-logo.png";
 import { useAuth } from "@/hooks/use-auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
+import { getLeaderboard, type LeaderboardRow } from "@/lib/leaderboard.functions";
 
 export const Route = createFileRoute("/")({
   head: () => ({
