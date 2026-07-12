@@ -474,3 +474,94 @@ function Index() {
     </SiteLayout>
   );
 }
+
+function LiveLeaderboardSection() {
+  const fetchLeaderboard = useServerFn(getLeaderboard);
+  const [rows, setRows] = useState<LeaderboardRow[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let alive = true;
+    const load = async () => {
+      try {
+        const data = await fetchLeaderboard({ data: { limit: 10 } });
+        if (alive) setRows(data);
+      } finally {
+        if (alive) setLoading(false);
+      }
+    };
+    load();
+    const t = setInterval(load, 15000);
+    return () => {
+      alive = false;
+      clearInterval(t);
+    };
+  }, [fetchLeaderboard]);
+
+  const medalIcon = (r: number) => {
+    if (r === 1) return <Crown className="h-4 w-4 text-[oklch(0.88_0.16_85)]" />;
+    if (r === 2) return <Medal className="h-4 w-4 text-[oklch(0.85_0.05_75)]" />;
+    if (r === 3) return <Medal className="h-4 w-4 text-[oklch(0.65_0.15_50)]" />;
+    return <span className="text-xs text-[oklch(0.75_0.04_95)] w-4 inline-block text-center">{r}</span>;
+  };
+
+  return (
+    <section className="relative overflow-hidden py-16 bg-[oklch(0.14_0.05_155)]/70">
+      <div className="max-w-6xl mx-auto px-4 relative">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[oklch(0.28_0.12_155)] border border-[oklch(0.78_0.16_75/0.5)] text-[10px] uppercase tracking-widest text-gold mb-3">
+              <Trophy className="h-3.5 w-3.5" /> Živý žebříček
+            </div>
+            <h2 className="text-3xl sm:text-5xl">
+              <span className="text-gold">KRÁLOVÉ </span>
+              <span className="text-[oklch(0.96_0.03_95)]">DŽUNGLE</span>
+            </h2>
+            <p className="text-[oklch(0.85_0.04_75)] mt-3 max-w-2xl leading-relaxed">
+              Nejbohatší ringmasteři podle nasbíraných mincí. Aktualizuje se každých 15 sekund.
+            </p>
+          </div>
+          <Link
+            to="/zebricek"
+            className="self-start sm:self-auto inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gold-grad text-[oklch(0.2_0.06_155)] text-sm font-bold uppercase tracking-widest shadow-gold hover:brightness-110 transition"
+          >
+            Celý žebříček
+          </Link>
+        </div>
+
+        <div className="rounded-2xl bg-[oklch(0.2_0.06_155)]/90 backdrop-blur border border-[oklch(0.78_0.16_75/0.35)] overflow-hidden">
+          {loading && rows.length === 0 ? (
+            <p className="text-center text-[oklch(0.85_0.04_75)] py-10">Načítání…</p>
+          ) : rows.length === 0 ? (
+            <p className="text-center text-[oklch(0.85_0.04_75)] py-10">Buďte prvním hráčem v žebříčku!</p>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="text-left text-[oklch(0.75_0.04_95)] uppercase text-xs tracking-widest bg-black/30">
+                    <th className="py-3 px-4">#</th>
+                    <th className="py-3 px-4">Hráč</th>
+                    <th className="py-3 px-4 text-right">Mince</th>
+                    <th className="py-3 px-4 text-right hidden sm:table-cell">Max. výhra</th>
+                    <th className="py-3 px-4 text-right hidden md:table-cell">Výher</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map((r) => (
+                    <tr key={r.username + r.rank} className="border-t border-[oklch(0.78_0.16_75/0.1)]">
+                      <td className="py-2.5 px-4">{medalIcon(r.rank)}</td>
+                      <td className="py-2.5 px-4 font-semibold text-[oklch(0.95_0.04_85)]">{r.username}</td>
+                      <td className="py-2.5 px-4 text-right text-gold font-bold tabular-nums">{r.coins.toLocaleString("cs-CZ")}</td>
+                      <td className="py-2.5 px-4 text-right text-[oklch(0.9_0.04_85)] tabular-nums hidden sm:table-cell">{r.biggest_win.toLocaleString("cs-CZ")}</td>
+                      <td className="py-2.5 px-4 text-right text-[oklch(0.9_0.04_85)] tabular-nums hidden md:table-cell">{r.total_wins}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
