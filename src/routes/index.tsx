@@ -85,47 +85,6 @@ const nominations = [
   },
 ];
 
-const leagues = [
-  {
-    tier: "I",
-    name: "Liga zlatých pum",
-    prize: "10 000 mincí",
-    players: [
-      { pos: 1, nick: "Hráč 1", pts: "24 000", reward: "5 000 mincí" },
-      { pos: 2, nick: "Hráč 2", pts: "22 000", reward: "2 500 mincí" },
-      { pos: 3, nick: "Hráč 3", pts: "20 000", reward: "1 500 mincí" },
-      { pos: 4, nick: "Hráč 4", pts: "18 000", reward: "700 mincí" },
-      { pos: 5, nick: "Hráč 5", pts: "16 000", reward: "300 mincí" },
-    ],
-    status: "Známý, Vynikající, Guru, Elita, Legenda.",
-  },
-  {
-    tier: "II",
-    name: "Liga smaragdových hadů",
-    prize: "5 000 mincí",
-    players: [
-      { pos: 1, nick: "Hráč 1", pts: "12 000", reward: "2 500 mincí" },
-      { pos: 2, nick: "Hráč 2", pts: "11 000", reward: "1 250 mincí" },
-      { pos: 3, nick: "Hráč 3", pts: "10 000", reward: "750 mincí" },
-      { pos: 4, nick: "Hráč 4", pts: "9 000", reward: "350 mincí" },
-      { pos: 5, nick: "Hráč 5", pts: "8 000", reward: "150 mincí" },
-    ],
-    status: "Amatér, Znalec.",
-  },
-  {
-    tier: "III",
-    name: "Liga divokých papoušků",
-    prize: "2 500 mincí",
-    players: [
-      { pos: 1, nick: "Hráč 1", pts: "6 000", reward: "1 250 mincí" },
-      { pos: 2, nick: "Hráč 2", pts: "5 500", reward: "625 mincí" },
-      { pos: 3, nick: "Hráč 3", pts: "5 000", reward: "375 mincí" },
-      { pos: 4, nick: "Hráč 4", pts: "4 500", reward: "175 mincí" },
-      { pos: 5, nick: "Hráč 5", pts: "4 000", reward: "75 mincí" },
-    ],
-    status: "Nováček, Nadšenec.",
-  },
-];
 
 function Index() {
   const { user } = useAuth();
