@@ -95,12 +95,7 @@ export const claimTopUp = createServerFn({ method: "POST" })
   .handler(async ({ context }) => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const userId = context.userId;
-    const { data: profile, error } = await supabaseAdmin
-      .from("profiles")
-      .select("coins")
-      .eq("id", userId)
-      .single();
-    if (error || !profile) throw new Error("Profile not found");
+    const profile = await ensureProfile(supabaseAdmin, userId);
     // Only allow top-up when balance is low, to prevent unbounded free coin accumulation.
     if (profile.coins > 100) throw new Error("Top-up available only when balance ≤ 100");
     const balance_after = profile.coins + 500;
