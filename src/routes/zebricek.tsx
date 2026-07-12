@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site-layout";
 import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { useServerFn } from "@tanstack/react-start";
+import { getLeaderboard, type LeaderboardRow } from "@/lib/leaderboard.functions";
 import { useAuth } from "@/hooks/use-auth";
 import { Trophy, Crown, Medal, Coins, TrendingUp, Repeat } from "lucide-react";
 
@@ -19,25 +20,22 @@ export const Route = createFileRoute("/zebricek")({
   component: Leaderboard,
 });
 
-type Row = {
-  rank: number;
-  username: string;
-  coins: number;
-  biggest_win: number;
-  total_wins: number;
-  total_spins: number;
-};
+type Row = LeaderboardRow;
 
 function Leaderboard() {
   const { profile } = useAuth();
+  const fetchLeaderboard = useServerFn(getLeaderboard);
   const [rows, setRows] = useState<Row[]>([]);
   const [loading, setLoading] = useState(true);
 
   const load = async () => {
     setLoading(true);
-    const { data } = await supabase.rpc("get_leaderboard", { _limit: 50 });
-    setRows((data ?? []) as Row[]);
-    setLoading(false);
+    try {
+      const data = await fetchLeaderboard({ data: { limit: 50 } });
+      setRows(data);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
