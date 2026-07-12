@@ -389,14 +389,18 @@ export function WheelOfFortune() {
               {spinning ? "Točí se…" : "Roztočit"}
             </button>
 
-            <div className="flex justify-center">
+            <div className="flex flex-col items-center gap-1">
               <button
                 onClick={topUp}
-                disabled={spinning}
-                className="px-4 py-2 rounded-lg bg-[oklch(0.4_0.18_155)] hover:bg-[oklch(0.45_0.2_155)] border border-[oklch(0.78_0.16_75/0.5)] text-sm text-[oklch(0.95_0.04_85)] font-semibold disabled:opacity-50"
+                disabled={spinning || coins > 100}
+                title={coins > 100 ? "Bonus +500 je dostupný pouze při zůstatku ≤ 100 mincí" : undefined}
+                className="px-4 py-2 rounded-lg bg-[oklch(0.4_0.18_155)] hover:bg-[oklch(0.45_0.2_155)] border border-[oklch(0.78_0.16_75/0.5)] text-sm text-[oklch(0.95_0.04_85)] font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 +500 zdarma
               </button>
+              {coins > 100 && (
+                <span className="text-[10px] text-[oklch(0.7_0.04_75)]">Dostupné při zůstatku ≤ 100</span>
+              )}
             </div>
           </div>
       </div>
