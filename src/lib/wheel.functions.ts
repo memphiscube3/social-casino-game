@@ -27,6 +27,29 @@ function pickWinner() {
   return 0;
 }
 
+async function ensureProfile(supabaseAdmin: any, userId: string) {
+  const { data: profile } = await supabaseAdmin
+    .from("profiles")
+    .select("coins,total_spins,total_wins,biggest_win,username,email")
+    .eq("id", userId)
+    .maybeSingle();
+  if (profile) return profile;
+
+  // Fallback: trigger didn't create the row — create it with safe defaults.
+  const { data: userRes } = await supabaseAdmin.auth.admin.getUserById(userId);
+  const u = userRes?.user;
+  const username =
+    (u?.user_metadata as any)?.username ||
+    (u?.email ? u.email.split("@")[0] : `hrac_${userId.slice(0, 6)}`);
+  const { data: inserted, error: insErr } = await supabaseAdmin
+    .from("profiles")
+    .insert({ id: userId, username, email: u?.email ?? null })
+    .select("coins,total_spins,total_wins,biggest_win,username,email")
+    .single();
+  if (insErr || !inserted) throw new Error("Profile could not be created");
+  return inserted;
+}
+
 export const spinWheel = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((data) =>
@@ -37,12 +60,7 @@ export const spinWheel = createServerFn({ method: "POST" })
     const userId = context.userId;
     const bet = data.bet;
 
-    const { data: profile, error: pErr } = await supabaseAdmin
-      .from("profiles")
-      .select("coins,total_spins,total_wins,biggest_win")
-      .eq("id", userId)
-      .single();
-    if (pErr || !profile) throw new Error("Profile not found");
+    const profile = await ensureProfile(supabaseAdmin, userId);
     if (profile.coins < bet) throw new Error("Insufficient coins");
 
     const winnerIdx = pickWinner();
