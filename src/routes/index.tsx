@@ -20,7 +20,9 @@ import {
 } from "lucide-react";
 import jungleLogo from "@/assets/jungle-logo.png";
 import { useAuth } from "@/hooks/use-auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
+import { getLeaderboard, type LeaderboardRow } from "@/lib/leaderboard.functions";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -83,47 +85,6 @@ const nominations = [
   },
 ];
 
-const leagues = [
-  {
-    tier: "I",
-    name: "Liga zlatých pum",
-    prize: "10 000 mincí",
-    players: [
-      { pos: 1, nick: "Hráč 1", pts: "24 000", reward: "5 000 mincí" },
-      { pos: 2, nick: "Hráč 2", pts: "22 000", reward: "2 500 mincí" },
-      { pos: 3, nick: "Hráč 3", pts: "20 000", reward: "1 500 mincí" },
-      { pos: 4, nick: "Hráč 4", pts: "18 000", reward: "700 mincí" },
-      { pos: 5, nick: "Hráč 5", pts: "16 000", reward: "300 mincí" },
-    ],
-    status: "Známý, Vynikající, Guru, Elita, Legenda.",
-  },
-  {
-    tier: "II",
-    name: "Liga smaragdových hadů",
-    prize: "5 000 mincí",
-    players: [
-      { pos: 1, nick: "Hráč 1", pts: "12 000", reward: "2 500 mincí" },
-      { pos: 2, nick: "Hráč 2", pts: "11 000", reward: "1 250 mincí" },
-      { pos: 3, nick: "Hráč 3", pts: "10 000", reward: "750 mincí" },
-      { pos: 4, nick: "Hráč 4", pts: "9 000", reward: "350 mincí" },
-      { pos: 5, nick: "Hráč 5", pts: "8 000", reward: "150 mincí" },
-    ],
-    status: "Amatér, Znalec.",
-  },
-  {
-    tier: "III",
-    name: "Liga divokých papoušků",
-    prize: "2 500 mincí",
-    players: [
-      { pos: 1, nick: "Hráč 1", pts: "6 000", reward: "1 250 mincí" },
-      { pos: 2, nick: "Hráč 2", pts: "5 500", reward: "625 mincí" },
-      { pos: 3, nick: "Hráč 3", pts: "5 000", reward: "375 mincí" },
-      { pos: 4, nick: "Hráč 4", pts: "4 500", reward: "175 mincí" },
-      { pos: 5, nick: "Hráč 5", pts: "4 000", reward: "75 mincí" },
-    ],
-    status: "Nováček, Nadšenec.",
-  },
-];
 
 function Index() {
   const { user } = useAuth();
@@ -373,60 +334,9 @@ function Index() {
         </div>
       </section>
 
-      {/* ========== 3 LIGY ========== */}
-      <section className="relative overflow-hidden py-16 bg-[oklch(0.14_0.05_155)]/70">
-        <div className="max-w-6xl mx-auto px-4 relative">
-          <h2 className="text-3xl sm:text-5xl mb-4">
-            <span className="text-gold">3 LIGY </span>
-            <span className="text-[oklch(0.96_0.03_95)]">JUNGLE CIRCLE</span>
-          </h2>
-          <p className="text-[oklch(0.85_0.04_75)] mb-10 max-w-3xl leading-relaxed">
-            Od 1. srpna platí v Jungle Circle systém 3 lig. Hráči jsou rozděleni podle svého statusu. Vítěz první ligy získává až <span className="text-gold font-semibold">10 000 mincí</span>!
-          </p>
+      {/* ========== ŽIVÝ ŽEBŘÍČEK ========== */}
+      <LiveLeaderboardSection />
 
-          <div className="grid md:grid-cols-3 gap-5">
-            {leagues.map((lg) => (
-              <div key={lg.tier} className="rounded-2xl bg-[oklch(0.2_0.06_155)]/90 backdrop-blur border border-[oklch(0.78_0.16_75/0.35)] p-5 hover:border-[oklch(0.86_0.17_90)] transition">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-full bg-gold-grad flex items-center justify-center shadow-gold text-[oklch(0.15_0.05_155)] font-black" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-                    {lg.tier}
-                  </div>
-                  <div>
-                    <div className="text-gold font-bold text-lg leading-tight">{lg.name}</div>
-                    <div className="text-xs text-[oklch(0.75_0.04_95)]">Fond: <span className="text-lime font-semibold">{lg.prize}</span></div>
-                  </div>
-                </div>
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="text-[oklch(0.75_0.04_95)] text-xs uppercase tracking-wider border-b border-[oklch(0.78_0.16_75/0.2)]">
-                      <th className="text-left py-2 font-medium">#</th>
-                      <th className="text-left py-2 font-medium">Nick</th>
-                      <th className="text-right py-2 font-medium">Body</th>
-                      <th className="text-right py-2 font-medium">Cena</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-[oklch(0.92_0.04_95)]">
-                    {lg.players.map((p) => (
-                      <tr key={p.pos} className="border-b border-[oklch(0.78_0.16_75/0.08)] last:border-0">
-                        <td className="py-2 text-gold font-bold">{p.pos}</td>
-                        <td className="py-2">{p.nick}</td>
-                        <td className="py-2 text-right">{p.pts}</td>
-                        <td className="py-2 text-right text-lime font-semibold">{p.reward}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-                <p className="mt-3 text-xs text-[oklch(0.75_0.04_95)] leading-snug">
-                  Účastní se hráči se statusem: <span className="text-[oklch(0.92_0.04_95)]">{lg.status}</span>
-                </p>
-              </div>
-            ))}
-          </div>
-          <p className="mt-6 text-xs text-[oklch(0.75_0.04_95)] text-center max-w-3xl mx-auto">
-            Za aktualizacemi žebříčku můžete sledovat v reálném čase na hlavní stránce. Hodně štěstí, průzkumníku!
-          </p>
-        </div>
-      </section>
 
       {/* ========== JAK SE URČUJÍ VÍTĚZOVÉ ========== */}
       <section className="relative overflow-hidden py-16">
@@ -521,5 +431,96 @@ function Index() {
         </div>
       </section>
     </SiteLayout>
+  );
+}
+
+function LiveLeaderboardSection() {
+  const fetchLeaderboard = useServerFn(getLeaderboard);
+  const [rows, setRows] = useState<LeaderboardRow[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let alive = true;
+    const load = async () => {
+      try {
+        const data = await fetchLeaderboard({ data: { limit: 10 } });
+        if (alive) setRows(data);
+      } finally {
+        if (alive) setLoading(false);
+      }
+    };
+    load();
+    const t = setInterval(load, 15000);
+    return () => {
+      alive = false;
+      clearInterval(t);
+    };
+  }, [fetchLeaderboard]);
+
+  const medalIcon = (r: number) => {
+    if (r === 1) return <Crown className="h-4 w-4 text-[oklch(0.88_0.16_85)]" />;
+    if (r === 2) return <Medal className="h-4 w-4 text-[oklch(0.85_0.05_75)]" />;
+    if (r === 3) return <Medal className="h-4 w-4 text-[oklch(0.65_0.15_50)]" />;
+    return <span className="text-xs text-[oklch(0.75_0.04_95)] w-4 inline-block text-center">{r}</span>;
+  };
+
+  return (
+    <section className="relative overflow-hidden py-16 bg-[oklch(0.14_0.05_155)]/70">
+      <div className="max-w-6xl mx-auto px-4 relative">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[oklch(0.28_0.12_155)] border border-[oklch(0.78_0.16_75/0.5)] text-[10px] uppercase tracking-widest text-gold mb-3">
+              <Trophy className="h-3.5 w-3.5" /> Živý žebříček
+            </div>
+            <h2 className="text-3xl sm:text-5xl">
+              <span className="text-gold">KRÁLOVÉ </span>
+              <span className="text-[oklch(0.96_0.03_95)]">DŽUNGLE</span>
+            </h2>
+            <p className="text-[oklch(0.85_0.04_75)] mt-3 max-w-2xl leading-relaxed">
+              Nejbohatší ringmasteři podle nasbíraných mincí. Aktualizuje se každých 15 sekund.
+            </p>
+          </div>
+          <Link
+            to="/zebricek"
+            className="self-start sm:self-auto inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gold-grad text-[oklch(0.2_0.06_155)] text-sm font-bold uppercase tracking-widest shadow-gold hover:brightness-110 transition"
+          >
+            Celý žebříček
+          </Link>
+        </div>
+
+        <div className="rounded-2xl bg-[oklch(0.2_0.06_155)]/90 backdrop-blur border border-[oklch(0.78_0.16_75/0.35)] overflow-hidden">
+          {loading && rows.length === 0 ? (
+            <p className="text-center text-[oklch(0.85_0.04_75)] py-10">Načítání…</p>
+          ) : rows.length === 0 ? (
+            <p className="text-center text-[oklch(0.85_0.04_75)] py-10">Buďte prvním hráčem v žebříčku!</p>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="text-left text-[oklch(0.75_0.04_95)] uppercase text-xs tracking-widest bg-black/30">
+                    <th className="py-3 px-4">#</th>
+                    <th className="py-3 px-4">Hráč</th>
+                    <th className="py-3 px-4 text-right">Mince</th>
+                    <th className="py-3 px-4 text-right hidden sm:table-cell">Max. výhra</th>
+                    <th className="py-3 px-4 text-right hidden md:table-cell">Výher</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map((r) => (
+                    <tr key={r.username + r.rank} className="border-t border-[oklch(0.78_0.16_75/0.1)]">
+                      <td className="py-2.5 px-4">{medalIcon(r.rank)}</td>
+                      <td className="py-2.5 px-4 font-semibold text-[oklch(0.95_0.04_85)]">{r.username}</td>
+                      <td className="py-2.5 px-4 text-right text-gold font-bold tabular-nums">{r.coins.toLocaleString("cs-CZ")}</td>
+                      <td className="py-2.5 px-4 text-right text-[oklch(0.9_0.04_85)] tabular-nums hidden sm:table-cell">{r.biggest_win.toLocaleString("cs-CZ")}</td>
+                      <td className="py-2.5 px-4 text-right text-[oklch(0.9_0.04_85)] tabular-nums hidden md:table-cell">{r.total_wins}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
   );
 }
