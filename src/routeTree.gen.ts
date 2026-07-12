@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ZodpovednaHraRouteImport } from './routes/zodpovedna-hra'
+import { Route as ZebricekRouteImport } from './routes/zebricek'
 import { Route as SmazaniUctuRouteImport } from './routes/smazani-uctu'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ProfilRouteImport } from './routes/profil'
@@ -26,6 +27,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const ZodpovednaHraRoute = ZodpovednaHraRouteImport.update({
   id: '/zodpovedna-hra',
   path: '/zodpovedna-hra',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ZebricekRoute = ZebricekRouteImport.update({
+  id: '/zebricek',
+  path: '/zebricek',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SmazaniUctuRoute = SmazaniUctuRouteImport.update({
@@ -102,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/profil': typeof ProfilRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/smazani-uctu': typeof SmazaniUctuRoute
+  '/zebricek': typeof ZebricekRoute
   '/zodpovedna-hra': typeof ZodpovednaHraRoute
 }
 export interface FileRoutesByTo {
@@ -117,6 +124,7 @@ export interface FileRoutesByTo {
   '/profil': typeof ProfilRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/smazani-uctu': typeof SmazaniUctuRoute
+  '/zebricek': typeof ZebricekRoute
   '/zodpovedna-hra': typeof ZodpovednaHraRoute
 }
 export interface FileRoutesById {
@@ -133,6 +141,7 @@ export interface FileRoutesById {
   '/profil': typeof ProfilRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/smazani-uctu': typeof SmazaniUctuRoute
+  '/zebricek': typeof ZebricekRoute
   '/zodpovedna-hra': typeof ZodpovednaHraRoute
 }
 export interface FileRouteTypes {
@@ -150,6 +159,7 @@ export interface FileRouteTypes {
     | '/profil'
     | '/sitemap.xml'
     | '/smazani-uctu'
+    | '/zebricek'
     | '/zodpovedna-hra'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -165,6 +175,7 @@ export interface FileRouteTypes {
     | '/profil'
     | '/sitemap.xml'
     | '/smazani-uctu'
+    | '/zebricek'
     | '/zodpovedna-hra'
   id:
     | '__root__'
@@ -180,6 +191,7 @@ export interface FileRouteTypes {
     | '/profil'
     | '/sitemap.xml'
     | '/smazani-uctu'
+    | '/zebricek'
     | '/zodpovedna-hra'
   fileRoutesById: FileRoutesById
 }
@@ -196,6 +208,7 @@ export interface RootRouteChildren {
   ProfilRoute: typeof ProfilRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SmazaniUctuRoute: typeof SmazaniUctuRoute
+  ZebricekRoute: typeof ZebricekRoute
   ZodpovednaHraRoute: typeof ZodpovednaHraRoute
 }
 
@@ -206,6 +219,13 @@ declare module '@tanstack/react-router' {
       path: '/zodpovedna-hra'
       fullPath: '/zodpovedna-hra'
       preLoaderRoute: typeof ZodpovednaHraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/zebricek': {
+      id: '/zebricek'
+      path: '/zebricek'
+      fullPath: '/zebricek'
+      preLoaderRoute: typeof ZebricekRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/smazani-uctu': {
@@ -308,6 +328,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProfilRoute: ProfilRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SmazaniUctuRoute: SmazaniUctuRoute,
+  ZebricekRoute: ZebricekRoute,
   ZodpovednaHraRoute: ZodpovednaHraRoute,
 }
 export const routeTree = rootRouteImport
