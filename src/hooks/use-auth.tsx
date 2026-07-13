@@ -53,26 +53,34 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
-    const { data: sub } = supabase.auth.onAuthStateChange(async (_e, s) => {
+    // CRITICAL: never `await` supabase calls inside onAuthStateChange —
+    // supabase-js holds an auth lock across the callback, which deadlocks any
+    // later `getSession()` (e.g. the attachSupabaseAuth bearer middleware
+    // before every server function). Defer async work via setTimeout(0).
+    const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => {
       setSession(s);
       setUser(s?.user ?? null);
       if (s?.user) {
-        await loadProfile(s.user.id);
+        const uid = s.user.id;
+        setTimeout(() => {
+          loadProfile(uid).finally(() => setLoading(false));
+        }, 0);
       } else {
         setProfile(null);
+        setLoading(false);
       }
-      setLoading(false);
     });
 
-    supabase.auth.getSession().then(async ({ data }) => {
+    supabase.auth.getSession().then(({ data }) => {
       setSession(data.session);
       setUser(data.session?.user ?? null);
       if (data.session?.user) {
-        await loadProfile(data.session.user.id);
+        const uid = data.session.user.id;
+        loadProfile(uid).finally(() => setLoading(false));
       } else {
         setProfile(null);
+        setLoading(false);
       }
-      setLoading(false);
     });
 
     return () => sub.subscription.unsubscribe();
