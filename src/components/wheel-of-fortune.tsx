@@ -331,7 +331,7 @@ export function WheelOfFortune() {
                       fontSize={s.mult === 100 ? 15 : 22}
                       fontWeight="900"
                       transform={`rotate(${mid} ${tx} ${ty})`}
-                      style={{ fontFamily: "'Bebas Neue', sans-serif", paintOrder: "stroke", stroke: "#0a2a15", strokeWidth: 1.2 }}
+                      style={{ fontFamily: "'Rubik Mono One', sans-serif", paintOrder: "stroke", stroke: "#0a2a15", strokeWidth: 1.2 }}
                     >
                       {s.label}
                     </text>
