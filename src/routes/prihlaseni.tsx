@@ -27,8 +27,8 @@ function AuthPage() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (user) nav({ to: "/profil" });
-  }, [user, nav]);
+    if (!loading && user) nav({ to: "/profil" });
+  }, [user, loading, nav]);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
