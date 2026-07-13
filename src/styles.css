@@ -155,7 +155,7 @@
   body {
     background-color: transparent;
     color: var(--color-foreground);
-    font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+    font-family: var(--font-sans);
   }
   html {
     background-color: var(--color-background);
@@ -166,9 +166,9 @@
     background-attachment: fixed;
   }
   h1, h2, h3, h4 {
-    font-family: 'Bebas Neue', 'Bricolage Grotesque', 'Manrope', sans-serif;
-    letter-spacing: 0.03em;
-    font-weight: 700;
+    font-family: var(--font-display);
+    letter-spacing: 0.05em;
+    font-weight: 400;
   }
 }
 
