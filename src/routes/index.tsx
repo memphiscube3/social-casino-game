@@ -231,8 +231,8 @@ function Index() {
                 head: "Staňte se vítězem",
                 desc: "Máte šanci vyhrát v každé ze tří nominací a dostat se do TOP 5 své ligy.",
               },
-            ].map((s, i) => (
-              <div key={i} className="relative">
+            ].map((s, i) => {
+              const card = (
                 <div className="rounded-2xl bg-gradient-to-br from-[oklch(0.28_0.09_155)]/90 to-[oklch(0.16_0.05_155)]/90 backdrop-blur border border-[oklch(0.78_0.16_75/0.35)] p-6 hover:border-[oklch(0.86_0.17_90)] transition group relative overflow-hidden">
                   <div className="absolute -top-1 -right-1 text-6xl font-display text-gold opacity-15">
                     {s.num}
@@ -244,13 +244,28 @@ function Index() {
                   <h3 className="text-lg text-gold mb-3">{s.head}</h3>
                   <p className="text-sm text-[oklch(0.85_0.04_75)] leading-relaxed">{s.desc}</p>
                 </div>
-                {i < 2 && (
-                  <div className="hidden md:flex absolute top-1/2 -right-4 -translate-y-1/2 z-10 text-2xl text-gold">
-                    »
-                  </div>
-                )}
-              </div>
-            ))}
+              );
+
+              return (
+                <div key={i} className="relative">
+                  {i === 0 && !user ? (
+                    <Link
+                      to="/prihlaseni"
+                      className="block rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[oklch(0.82_0.17_90)]"
+                    >
+                      {card}
+                    </Link>
+                  ) : (
+                    card
+                  )}
+                  {i < 2 && (
+                    <div className="hidden md:flex absolute top-1/2 -right-4 -translate-y-1/2 z-10 text-2xl text-gold">
+                      »
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
