@@ -16,7 +16,7 @@ export const Route = createFileRoute("/prihlaseni")({
 });
 
 function AuthPage() {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const nav = useNavigate();
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [email, setEmail] = useState("");
@@ -24,11 +24,11 @@ function AuthPage() {
   const [password2, setPassword2] = useState("");
   const [username, setUsername] = useState("");
   const [agree, setAgree] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    if (!loading && user) nav({ to: "/profil" });
-  }, [user, loading, nav]);
+    if (!authLoading && user) nav({ to: "/profil" });
+  }, [user, authLoading, nav]);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
