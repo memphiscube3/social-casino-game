@@ -147,10 +147,10 @@ function AuthPage() {
             )}
             <button
               type="submit"
-              disabled={loading}
+              disabled={submitting}
               className="w-full py-3 rounded-lg bg-gold-grad text-[oklch(0.2_0.06_155)] font-extrabold uppercase tracking-widest shadow-gold disabled:opacity-50"
             >
-              {loading ? "..." : mode === "login" ? "Přihlásit" : "Vytvořit účet"}
+              {submitting ? "..." : mode === "login" ? "Přihlásit" : "Vytvořit účet"}
             </button>
           </form>
           <p className="mt-6 text-center text-xs text-[oklch(0.7_0.04_75)]">
