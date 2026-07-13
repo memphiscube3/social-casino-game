@@ -161,7 +161,7 @@ function Index() {
             { n: "100k", label: "MINCÍ", sub: "Fond první ligy — až 10 000 mincí pro vítěze" },
           ].map((s, i) => (
             <div key={i} className="text-center">
-              <div className="text-4xl sm:text-6xl font-black text-gold leading-none mb-1" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+              <div className="text-4xl sm:text-6xl font-display text-gold leading-none mb-1">
                 {s.n}
               </div>
               <div className="text-xs sm:text-sm uppercase tracking-widest text-[oklch(0.95_0.04_85)] font-bold mb-1">{s.label}</div>
@@ -234,7 +234,7 @@ function Index() {
             ].map((s, i) => (
               <div key={i} className="relative">
                 <div className="rounded-2xl bg-gradient-to-br from-[oklch(0.28_0.09_155)]/90 to-[oklch(0.16_0.05_155)]/90 backdrop-blur border border-[oklch(0.78_0.16_75/0.35)] p-6 hover:border-[oklch(0.86_0.17_90)] transition group relative overflow-hidden">
-                  <div className="absolute -top-1 -right-1 text-6xl font-black text-gold opacity-15" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+                  <div className="absolute -top-1 -right-1 text-6xl font-display text-gold opacity-15">
                     {s.num}
                   </div>
                   <div className="w-14 h-14 rounded-2xl bg-gold-grad flex items-center justify-center mb-4 shadow-gold group-hover:animate-tilt">
@@ -274,7 +274,7 @@ function Index() {
           </Link>
           {!user && (
             <div className="mt-10 max-w-xl mx-auto rounded-2xl bg-[oklch(0.22_0.06_155)]/85 backdrop-blur border border-[oklch(0.75_0.22_135/0.5)] p-6 text-center shadow-lime">
-              <h3 className="text-2xl text-lime mb-2" style={{ fontFamily: "'Bebas Neue', sans-serif", letterSpacing: "0.08em" }}>
+              <h3 className="text-2xl text-lime mb-2 tracking-widest">
                 Uložte si pokrok
               </h3>
               <p className="text-sm text-[oklch(0.85_0.04_95)] mb-4">
@@ -324,7 +324,7 @@ function Index() {
                   <h3 className="text-xl mb-3" style={{ color: n.accent }}>{n.title}</h3>
                   <div className="w-full rounded-lg bg-[oklch(0.14_0.05_155)] border border-[oklch(0.78_0.16_75/0.3)] py-3 mb-4">
                     <div className="text-xs uppercase tracking-widest text-[oklch(0.75_0.04_95)] mb-1">Hlavní cena</div>
-                    <div className="text-2xl font-black text-gold" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>{n.prize}</div>
+                    <div className="text-2xl font-display text-gold">{n.prize}</div>
                   </div>
                   <p className="text-sm text-[oklch(0.85_0.04_75)] leading-relaxed">{n.desc}</p>
                 </div>

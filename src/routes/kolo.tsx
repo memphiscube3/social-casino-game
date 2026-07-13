@@ -42,10 +42,7 @@ function KoloPage() {
 
           {!user && (
             <div className="mt-10 max-w-xl mx-auto rounded-2xl bg-[oklch(0.22_0.06_155)]/85 backdrop-blur border border-[oklch(0.75_0.22_135/0.5)] p-6 text-center shadow-lime">
-              <h3
-                className="text-2xl text-lime mb-2"
-                style={{ fontFamily: "'Bebas Neue', sans-serif", letterSpacing: "0.08em" }}
-              >
+              <h3 className="text-2xl text-lime mb-2 tracking-widest">
                 Uložte si pokrok
               </h3>
               <p className="text-sm text-[oklch(0.85_0.04_95)] mb-4">
