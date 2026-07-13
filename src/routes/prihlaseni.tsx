@@ -16,7 +16,7 @@ export const Route = createFileRoute("/prihlaseni")({
 });
 
 function AuthPage() {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const nav = useNavigate();
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [email, setEmail] = useState("");
@@ -24,15 +24,15 @@ function AuthPage() {
   const [password2, setPassword2] = useState("");
   const [username, setUsername] = useState("");
   const [agree, setAgree] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    if (user) nav({ to: "/profil" });
-  }, [user, nav]);
+    if (!authLoading && user) nav({ to: "/profil" });
+  }, [user, authLoading, nav]);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    setSubmitting(true);
     try {
       if (mode === "signup") {
         if (password !== password2) {
@@ -53,17 +53,15 @@ function AuthPage() {
         });
         if (error) throw error;
         toast.success("Účet vytvořen!");
-        nav({ to: "/profil" });
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
         toast.success("Vítejte zpět!");
-        nav({ to: "/profil" });
       }
     } catch (err: any) {
       toast.error(err.message ?? "Chyba");
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
   };
 

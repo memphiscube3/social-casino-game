@@ -31,25 +31,50 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const loadProfile = async (uid: string) => {
     const { data } = await supabase.from("profiles").select("*").eq("id", uid).maybeSingle();
-    if (data) setProfile(data as Profile);
+    if (data) {
+      setProfile(data as Profile);
+      return;
+    }
+
+    // Fallback: if the trigger didn't create the row, create it from the current user.
+    const { data: userData } = await supabase.auth.getUser();
+    const u = userData.user;
+    if (!u) return;
+    const username =
+      (u.user_metadata?.username as string) ||
+      u.email?.split("@")[0] ||
+      `hrac_${uid.slice(0, 6)}`;
+    const { data: inserted } = await supabase
+      .from("profiles")
+      .insert({ id: uid, username, email: u.email ?? null })
+      .select("*")
+      .maybeSingle();
+    if (inserted) setProfile(inserted as Profile);
   };
 
   useEffect(() => {
-    const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => {
+    const { data: sub } = supabase.auth.onAuthStateChange(async (_e, s) => {
       setSession(s);
       setUser(s?.user ?? null);
       if (s?.user) {
-        setTimeout(() => loadProfile(s.user.id), 0);
+        await loadProfile(s.user.id);
       } else {
         setProfile(null);
       }
-    });
-    supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session);
-      setUser(data.session?.user ?? null);
-      if (data.session?.user) loadProfile(data.session.user.id);
       setLoading(false);
     });
+
+    supabase.auth.getSession().then(async ({ data }) => {
+      setSession(data.session);
+      setUser(data.session?.user ?? null);
+      if (data.session?.user) {
+        await loadProfile(data.session.user.id);
+      } else {
+        setProfile(null);
+      }
+      setLoading(false);
+    });
+
     return () => sub.subscription.unsubscribe();
   }, []);
 
