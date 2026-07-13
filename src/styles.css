@@ -97,13 +97,13 @@
   --sidebar-border: oklch(0.55 0.14 130 / 40%);
   --sidebar-ring: oklch(0.82 0.17 90);
 
-  --gold: oklch(0.92 0.20 100);
-  --gold-deep: oklch(0.85 0.19 100);
+  --gold: oklch(0.86 0.17 90);
+  --gold-deep: oklch(0.62 0.14 75);
   --lime: oklch(0.86 0.24 130);
   --lime-deep: oklch(0.6 0.22 138);
   --jungle: oklch(0.28 0.09 155);
   --jungle-deep: oklch(0.15 0.05 155);
-  --gradient-gold: linear-gradient(180deg, oklch(0.95 0.20 105), oklch(0.90 0.21 100) 50%, oklch(0.85 0.20 98));
+  --gradient-gold: linear-gradient(180deg, oklch(0.92 0.16 95), oklch(0.72 0.17 78) 50%, oklch(0.52 0.14 60));
   --gradient-lime: linear-gradient(180deg, oklch(0.92 0.24 128), oklch(0.72 0.24 135) 60%, oklch(0.48 0.18 140));
   --gradient-jungle: radial-gradient(ellipse at top, oklch(0.28 0.09 155) 0%, oklch(0.12 0.04 155) 70%);
   --shadow-gold: 0 0 40px -8px oklch(0.82 0.17 90 / 0.55), 0 0 8px oklch(0.86 0.17 90 / 0.4);
