@@ -32,7 +32,7 @@ function AuthPage() {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    setSubmitting(true);
     try {
       if (mode === "signup") {
         if (password !== password2) {
@@ -61,7 +61,7 @@ function AuthPage() {
     } catch (err: any) {
       toast.error(err.message ?? "Chyba");
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
   };
 
