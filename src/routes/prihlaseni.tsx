@@ -53,12 +53,10 @@ function AuthPage() {
         });
         if (error) throw error;
         toast.success("Účet vytvořen!");
-        nav({ to: "/profil" });
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
         toast.success("Vítejte zpět!");
-        nav({ to: "/profil" });
       }
     } catch (err: any) {
       toast.error(err.message ?? "Chyba");
