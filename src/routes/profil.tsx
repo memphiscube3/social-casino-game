@@ -21,7 +21,7 @@ type HistoryRow = {
 };
 
 function Profile() {
-  const { user, profile, signOut, loading } = useAuth();
+  const { user, profile: profileRaw, signOut, loading, refreshProfile } = useAuth();
   const nav = useNavigate();
   const [history, setHistory] = useState<HistoryRow[]>([]);
   const [tab, setTab] = useState<"profile" | "history" | "achievements" | "settings">("profile");
@@ -29,6 +29,18 @@ function Profile() {
   useEffect(() => {
     if (!loading && !user) nav({ to: "/prihlaseni" });
   }, [loading, user, nav]);
+
+  // Retry loading the profile row if it wasn't ready right after signup.
+  useEffect(() => {
+    if (!user || profileRaw) return;
+    let attempts = 0;
+    const id = setInterval(() => {
+      attempts += 1;
+      refreshProfile();
+      if (attempts >= 5) clearInterval(id);
+    }, 600);
+    return () => clearInterval(id);
+  }, [user, profileRaw, refreshProfile]);
 
   useEffect(() => {
     if (!user) return;
@@ -39,15 +51,29 @@ function Profile() {
       .order("created_at", { ascending: false })
       .limit(50)
       .then(({ data }) => setHistory((data ?? []) as HistoryRow[]));
-  }, [user, profile?.total_spins]);
+  }, [user, profileRaw?.total_spins]);
 
-  if (!user || !profile) {
+  if (!user) {
     return (
       <SiteLayout>
         <div className="max-w-md mx-auto px-4 py-20 text-center text-[oklch(0.85_0.04_75)]">Načítání…</div>
       </SiteLayout>
     );
   }
+
+  // Fallback so stats appear instantly (defaults from DB: 1000 coins, 0 spins/wins).
+  const profile = profileRaw ?? {
+    id: user.id,
+    username:
+      ((user.user_metadata as any)?.username as string) ||
+      user.email?.split("@")[0] ||
+      "hráč",
+    email: user.email ?? null,
+    coins: 1000,
+    total_spins: 0,
+    total_wins: 0,
+    biggest_win: 0,
+  };
 
   const stats = [
     { icon: Coins, label: "Mince", val: profile.coins.toLocaleString("cs-CZ") },
