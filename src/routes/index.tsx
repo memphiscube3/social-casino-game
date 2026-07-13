@@ -161,7 +161,7 @@ function Index() {
             { n: "100k", label: "MINCÍ", sub: "Fond první ligy — až 10 000 mincí pro vítěze" },
           ].map((s, i) => (
             <div key={i} className="text-center">
-              <div className="text-4xl sm:text-6xl font-display text-gold leading-none mb-1">
+              <div className="text-4xl sm:text-6xl font-display font-bold text-gold leading-none mb-1">
                 {s.n}
               </div>
               <div className="text-xs sm:text-sm uppercase tracking-widest text-[oklch(0.95_0.04_85)] font-bold mb-1">{s.label}</div>
@@ -324,7 +324,7 @@ function Index() {
                   <h3 className="text-xl mb-3" style={{ color: n.accent }}>{n.title}</h3>
                   <div className="w-full rounded-lg bg-[oklch(0.14_0.05_155)] border border-[oklch(0.78_0.16_75/0.3)] py-3 mb-4">
                     <div className="text-xs uppercase tracking-widest text-[oklch(0.75_0.04_95)] mb-1">Hlavní cena</div>
-                    <div className="text-2xl font-display text-gold">{n.prize}</div>
+                    <div className="text-2xl font-display font-bold text-gold">{n.prize}</div>
                   </div>
                   <p className="text-sm text-[oklch(0.85_0.04_75)] leading-relaxed">{n.desc}</p>
                 </div>
