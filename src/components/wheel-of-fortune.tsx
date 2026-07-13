@@ -90,7 +90,6 @@ export function WheelOfFortune() {
   };
 
   const spin = async () => {
-    console.log("[spin] click", { spinning, coins, bet, user: !!user, profile: !!profile });
     if (spinning) return;
     if (coins < bet) {
       toast.error("Nedostatek mincí. Snižte sázku.");
@@ -102,9 +101,7 @@ export function WheelOfFortune() {
     if (user) {
       // Server-authoritative spin: server picks the winner and updates balances.
       try {
-        console.log("[spin] calling spinFn");
         const res = await spinFn({ data: { bet } });
-        console.log("[spin] spinFn result", res);
         setCoins(res.balance_after + (0)); // will be corrected after animation
         // Optimistically deduct bet visually while spinning.
         setCoins((c) => c - bet);
