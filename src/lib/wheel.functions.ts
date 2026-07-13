@@ -1,62 +1,23 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
-
-// Server-authoritative sector table. MUST match the visual order in
-// src/components/wheel-of-fortune.tsx so the returned index animates correctly.
-const SECTORS = [
-  { mult: 1,   label: "×1",       weight: 30 },
-  { mult: 10,  label: "×10",      weight: 3 },
-  { mult: 2,   label: "×2",       weight: 15 },
-  { mult: 0,   label: "×0",       weight: 40 },
-  { mult: 3,   label: "×3",       weight: 8 },
-  { mult: 25,  label: "×25",      weight: 1 },
-  { mult: 5,   label: "×5",       weight: 5 },
-  { mult: 100, label: "JACKPOT",  weight: 0.5 },
-] as const;
-
-const TOTAL_WEIGHT = SECTORS.reduce((s, x) => s + x.weight, 0);
-const ALLOWED_BETS = [10, 25, 50, 100, 250, 500] as const;
-
-function pickWinner() {
-  let r = Math.random() * TOTAL_WEIGHT;
-  for (let i = 0; i < SECTORS.length; i++) {
-    if (r < SECTORS[i].weight) return i;
-    r -= SECTORS[i].weight;
-  }
-  return 0;
-}
-
-async function ensureProfile(supabaseAdmin: any, userId: string) {
-  const { data: profile } = await supabaseAdmin
-    .from("profiles")
-    .select("coins,total_spins,total_wins,biggest_win,username,email")
-    .eq("id", userId)
-    .maybeSingle();
-  if (profile) return profile;
-
-  // Fallback: trigger didn't create the row — create it with safe defaults.
-  const { data: userRes } = await supabaseAdmin.auth.admin.getUserById(userId);
-  const u = userRes?.user;
-  const username =
-    (u?.user_metadata as any)?.username ||
-    (u?.email ? u.email.split("@")[0] : `hrac_${userId.slice(0, 6)}`);
-  const { data: inserted, error: insErr } = await supabaseAdmin
-    .from("profiles")
-    .insert({ id: userId, username, email: u?.email ?? null })
-    .select("coins,total_spins,total_wins,biggest_win,username,email")
-    .single();
-  if (insErr || !inserted) throw new Error("Profile could not be created");
-  return inserted;
-}
+import { ALLOWED_BETS } from "./wheel.server";
 
 export const spinWheel = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((data) =>
-    z.object({ bet: z.number().int().refine((v) => (ALLOWED_BETS as readonly number[]).includes(v), "Invalid bet") }).parse(data),
+    z
+      .object({
+        bet: z
+          .number()
+          .int()
+          .refine((v) => (ALLOWED_BETS as readonly number[]).includes(v), "Invalid bet"),
+      })
+      .parse(data),
   )
   .handler(async ({ data, context }) => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { SECTORS, pickWinner, ensureProfile } = await import("./wheel.server");
     const userId = context.userId;
     const bet = data.bet;
 
@@ -94,9 +55,9 @@ export const claimTopUp = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { ensureProfile } = await import("./wheel.server");
     const userId = context.userId;
     const profile = await ensureProfile(supabaseAdmin, userId);
-    // Only allow top-up when balance is low, to prevent unbounded free coin accumulation.
     if (profile.coins > 100) throw new Error("Top-up available only when balance ≤ 100");
     const balance_after = profile.coins + 500;
     const { error: uErr } = await supabaseAdmin
