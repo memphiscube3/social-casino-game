@@ -17,6 +17,9 @@ import {
   Zap,
   Play,
   Info,
+  Star,
+  Ban,
+  Smile,
 } from "lucide-react";
 import jungleLogo from "@/assets/jungle-logo.png";
 import { useAuth } from "@/hooks/use-auth";
