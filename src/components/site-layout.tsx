@@ -119,7 +119,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <main className="flex-1">{children}</main>
 
       <footer className="mt-20 border-t border-[oklch(0.78_0.16_75/0.25)] bg-[oklch(0.14_0.05_155)]">
-        <div className="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-4 gap-8">
+        <div className="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-5 gap-8">
           <div>
             <div className="mb-3"><BrandMark /></div>
             <p className="text-xs text-[oklch(0.75_0.04_95)] leading-relaxed">
