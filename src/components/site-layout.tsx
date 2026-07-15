@@ -116,6 +116,26 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         )}
       </header>
 
+      {/* Trust bar — visible across the whole site */}
+      <div className="border-b border-[oklch(0.78_0.16_75/0.25)] bg-[oklch(0.16_0.05_155)]/90 backdrop-blur">
+        <div className="max-w-7xl mx-auto px-4 py-2.5">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1.5 text-[10px] sm:text-xs uppercase tracking-widest text-[oklch(0.85_0.04_75)]">
+            <span className="inline-flex items-center gap-1.5">
+              <Star className="h-3.5 w-3.5 text-[oklch(0.86_0.17_90)]" /> Free Social Casino
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <Coins className="h-3.5 w-3.5 text-[oklch(0.86_0.24_130)]" /> Virtual Coins Only
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <Ban className="h-3.5 w-3.5 text-[oklch(0.65_0.2_30)]" /> No Real Money
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <Smile className="h-3.5 w-3.5 text-[oklch(0.86_0.17_90)]" /> Play for Fun
+            </span>
+          </div>
+        </div>
+      </div>
+
       <main className="flex-1">{children}</main>
 
       <footer className="mt-20 border-t border-[oklch(0.78_0.16_75/0.25)] bg-[oklch(0.14_0.05_155)]">
