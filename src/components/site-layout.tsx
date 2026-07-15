@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { type ReactNode, useState } from "react";
 import { useAuth } from "@/hooks/use-auth";
-import { Menu, X, Coins, LogOut, User as UserIcon, Star, Ban, Smile } from "lucide-react";
+import { Menu, X, Coins, LogOut, User as UserIcon, Star, Ban, Smile, Shield } from "lucide-react";
 import jungleLogo from "@/assets/jungle-logo.png";
 import jungleBg from "@/assets/jungle-bg.jpg";
 
