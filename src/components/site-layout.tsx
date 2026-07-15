@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { type ReactNode, useState } from "react";
 import { useAuth } from "@/hooks/use-auth";
-import { Menu, X, Coins, LogOut, User as UserIcon, Star, Ban, Smile } from "lucide-react";
+import { Menu, X, Coins, LogOut, User as UserIcon, Star, Ban, Smile, Shield } from "lucide-react";
 import jungleLogo from "@/assets/jungle-logo.png";
 import jungleBg from "@/assets/jungle-bg.jpg";
 
@@ -131,6 +131,9 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             </span>
             <span className="inline-flex items-center gap-1.5">
               <Smile className="h-3.5 w-3.5 text-[oklch(0.86_0.17_90)]" /> Play for Fun
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <Shield className="h-3.5 w-3.5 text-[oklch(0.65_0.2_30)]" /> 18+
             </span>
           </div>
         </div>
