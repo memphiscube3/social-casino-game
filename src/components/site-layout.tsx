@@ -143,6 +143,13 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             </ul>
           </div>
           <div>
+            <h4 className="text-gold text-sm uppercase tracking-widest mb-3">Kontakt</h4>
+            <ul className="space-y-2 text-sm text-[oklch(0.85_0.04_75)]">
+              <li className="leading-relaxed">Vinohradská 1203/45,<br />120 00 Praha 2,<br />Česká republika</li>
+              <li><a href="tel:+420777123456" className="hover:text-[oklch(0.88_0.16_85)]">+420 777 123 456</a></li>
+            </ul>
+          </div>
+          <div>
             <h4 className="text-gold text-sm uppercase tracking-widest mb-3">Právní</h4>
             <ul className="space-y-2 text-sm text-[oklch(0.85_0.04_75)]">
               <li><Link to="/ochrana-osobnich-udaju" className="hover:text-[oklch(0.88_0.16_85)]">Ochrana osobních údajů</Link></li>
