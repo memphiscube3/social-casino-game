@@ -128,9 +128,9 @@ function Index() {
                 ].map((b, i) => (
                   <span
                     key={i}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[oklch(0.22_0.06_155)]/80 border border-[oklch(0.78_0.16_75/0.35)] text-[10px] sm:text-xs uppercase tracking-widest text-[oklch(0.88_0.16_85)]"
+                    className="inline-flex items-center gap-[0.4875rem] px-[0.975rem] py-[0.4875rem] rounded-full bg-[oklch(0.22_0.06_155)]/80 border border-[oklch(0.78_0.16_75/0.35)] text-[13px] sm:text-[15.6px] uppercase tracking-widest text-[oklch(0.88_0.16_85)]"
                   >
-                    <b.icon className="h-3.5 w-3.5 text-[oklch(0.86_0.17_90)]" /> {b.text}
+                    <b.icon className="h-[1.1375rem] w-[1.1375rem] text-[oklch(0.86_0.17_90)]" /> {b.text}
                   </span>
                 ))}
               </div>
