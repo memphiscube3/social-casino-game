@@ -4,12 +4,14 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { useAuth } from "@/hooks/use-auth";
+import { noIndexMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/prihlaseni")({
   head: () => ({
     meta: [
       { title: "Přihlášení / Registrace — Jungle Circle" },
       { name: "description", content: "Přihlaste se nebo si vytvořte účet a uložte si pokrok ve hře." },
+      noIndexMeta,
     ],
   }),
   component: AuthPage,

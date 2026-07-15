@@ -1,8 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { InfoPage } from "@/components/info-page";
+import { canonicalLink, openGraphUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/podminky")({
-  head: () => ({ meta: [{ title: "Podmínky použití — Jungle Circle" }] }),
+  head: () => ({
+    meta: [{ title: "Podmínky použití — Jungle Circle" }, openGraphUrl("/podminky")],
+    links: [canonicalLink("/podminky")],
+  }),
   component: () => (
     <InfoPage title="Podmínky použití">
       <p>Používáním služby Jungle Circle souhlasíte s těmito podmínkami.</p>

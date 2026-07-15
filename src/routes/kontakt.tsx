@@ -2,9 +2,17 @@ import { createFileRoute } from "@tanstack/react-router";
 import { InfoPage } from "@/components/info-page";
 import { useState } from "react";
 import { toast } from "sonner";
+import { canonicalLink, openGraphUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/kontakt")({
-  head: () => ({ meta: [{ title: "Kontakt — Jungle Circle" }, { name: "description", content: "Kontaktujte podporu Cirkusové štěstěny." }] }),
+  head: () => ({
+    meta: [
+      { title: "Kontakt — Jungle Circle" },
+      { name: "description", content: "Kontaktujte podporu Jungle Circle." },
+      openGraphUrl("/kontakt"),
+    ],
+    links: [canonicalLink("/kontakt")],
+  }),
   component: ContactPage,
 });
 
