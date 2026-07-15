@@ -119,7 +119,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <main className="flex-1">{children}</main>
 
       <footer className="mt-20 border-t border-[oklch(0.78_0.16_75/0.25)] bg-[oklch(0.14_0.05_155)]">
-        <div className="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-4 gap-8">
+        <div className="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-5 gap-8">
           <div>
             <div className="mb-3"><BrandMark /></div>
             <p className="text-xs text-[oklch(0.75_0.04_95)] leading-relaxed">
@@ -140,6 +140,13 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               <li><Link to="/o-nas" className="hover:text-[oklch(0.88_0.16_85)]">O nás</Link></li>
               <li><Link to="/kontakt" className="hover:text-[oklch(0.88_0.16_85)]">Kontakt</Link></li>
               <li><Link to="/zodpovedna-hra" className="hover:text-[oklch(0.88_0.16_85)]">Zodpovědná hra</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-gold text-sm uppercase tracking-widest mb-3">Kontakt</h4>
+            <ul className="space-y-2 text-sm text-[oklch(0.85_0.04_75)]">
+              <li className="leading-relaxed">Vinohradská 1203/45,<br />120 00 Praha 2,<br />Česká republika</li>
+              <li><a href="tel:+420777123456" className="hover:text-[oklch(0.88_0.16_85)]">+420 777 123 456</a></li>
             </ul>
           </div>
           <div>
