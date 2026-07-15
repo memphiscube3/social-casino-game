@@ -124,6 +124,7 @@ function Index() {
                   { icon: Coins, text: "Virtual Coins Only" },
                   { icon: Ban, text: "No Real Money" },
                   { icon: Smile, text: "Play for Fun" },
+                  { icon: Shield, text: "18+" },
                 ].map((b, i) => (
                   <span
                     key={i}
