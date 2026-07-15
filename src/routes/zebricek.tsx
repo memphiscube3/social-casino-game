@@ -5,6 +5,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { getLeaderboard, type LeaderboardRow } from "@/lib/leaderboard.functions";
 import { useAuth } from "@/hooks/use-auth";
 import { Trophy, Crown, Medal, Coins, TrendingUp, Repeat } from "lucide-react";
+import { canonicalLink, openGraphUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/zebricek")({
   head: () => ({
@@ -14,8 +15,10 @@ export const Route = createFileRoute("/zebricek")({
       { property: "og:title", content: "Žebříček hráčů — Jungle Circle" },
       { property: "og:description", content: "Kdo právě vládne džungli? Podívejte se na TOP hráče." },
       { property: "og:type", content: "website" },
+      openGraphUrl("/zebricek"),
       { name: "twitter:card", content: "summary" },
     ],
+    links: [canonicalLink("/zebricek")],
   }),
   component: Leaderboard,
 });

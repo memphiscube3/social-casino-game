@@ -1,8 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { InfoPage } from "@/components/info-page";
+import { canonicalLink, openGraphUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/smazani-uctu")({
-  head: () => ({ meta: [{ title: "Smazání účtu — Jungle Circle" }] }),
+  head: () => ({
+    meta: [{ title: "Smazání účtu — Jungle Circle" }, openGraphUrl("/smazani-uctu")],
+    links: [canonicalLink("/smazani-uctu")],
+  }),
   component: () => (
     <InfoPage title="Smazání účtu a dat">
       <p>Vaše právo na vymazání respektujeme. Účet i veškerá osobní data můžete kdykoli smazat.</p>

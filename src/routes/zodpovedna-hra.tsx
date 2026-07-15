@@ -1,8 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { InfoPage } from "@/components/info-page";
+import { canonicalLink, openGraphUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/zodpovedna-hra")({
-  head: () => ({ meta: [{ title: "Zodpovědná hra — Jungle Circle" }] }),
+  head: () => ({
+    meta: [{ title: "Zodpovědná hra — Jungle Circle" }, openGraphUrl("/zodpovedna-hra")],
+    links: [canonicalLink("/zodpovedna-hra")],
+  }),
   component: () => (
     <InfoPage title="Zodpovědná hra">
       <p>I když hra nepředpokládá výhru peněz, doporučujeme přistupovat ke hraní s mírou.</p>

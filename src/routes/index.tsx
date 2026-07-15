@@ -26,6 +26,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { getLeaderboard, type LeaderboardRow } from "@/lib/leaderboard.functions";
+import { canonicalLink, openGraphUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -34,7 +35,9 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Vydejte se do ztracené džungle a roztočte kolo pokladů. 3 nominace, 3 ligy, jackpot ×100. Hrajte zdarma, sbírejte virtuální mince." },
       { property: "og:title", content: "Jungle Circle — Kolo štěstí" },
       { property: "og:description", content: "Roztočte kolo divoké džungle. 3 nominace, 3 ligy, jackpot ×100. Zdarma." },
+      openGraphUrl("/"),
     ],
+    links: [canonicalLink("/")],
   }),
   component: Index,
 });

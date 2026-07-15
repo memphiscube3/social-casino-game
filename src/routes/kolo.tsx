@@ -3,6 +3,7 @@ import { SiteLayout } from "@/components/site-layout";
 import { WheelOfFortune } from "@/components/wheel-of-fortune";
 import { useAuth } from "@/hooks/use-auth";
 import { Sparkles, ArrowLeft } from "lucide-react";
+import { canonicalLink, openGraphUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/kolo")({
   head: () => ({
@@ -11,7 +12,9 @@ export const Route = createFileRoute("/kolo")({
       { name: "description", content: "Roztočte kolo pokladů džungle. 8 sektorů, jackpot ×100. Zdarma a bez vkladů." },
       { property: "og:title", content: "Kolo štěstí — Jungle Circle" },
       { property: "og:description", content: "Roztočte kolo pokladů džungle. 8 sektorů, jackpot ×100." },
+      openGraphUrl("/kolo"),
     ],
+    links: [canonicalLink("/kolo")],
   }),
   component: KoloPage,
 });

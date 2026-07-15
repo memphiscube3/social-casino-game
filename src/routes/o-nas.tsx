@@ -1,8 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { InfoPage } from "@/components/info-page";
+import { canonicalLink, openGraphUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/o-nas")({
-  head: () => ({ meta: [{ title: "O nás — Jungle Circle" }, { name: "description", content: "O sociálním kasinu Jungle Circle." }] }),
+  head: () => ({
+    meta: [
+      { title: "O nás — Jungle Circle" },
+      { name: "description", content: "O sociálním kasinu Jungle Circle." },
+      openGraphUrl("/o-nas"),
+    ],
+    links: [canonicalLink("/o-nas")],
+  }),
   component: () => (
     <InfoPage title="O nás">
       <p>

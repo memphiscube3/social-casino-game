@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { InfoPage } from "@/components/info-page";
+import { canonicalLink, openGraphUrl } from "@/lib/seo";
 
 const items: [string, string][] = [
   ["Co je sociální kasino?", "Zábavní platforma s virtuálními mincemi. Nejde o hazardní hru o reálné peníze."],
@@ -11,7 +12,14 @@ const items: [string, string][] = [
 ];
 
 export const Route = createFileRoute("/faq")({
-  head: () => ({ meta: [{ title: "FAQ — Jungle Circle" }, { name: "description", content: "Časté otázky o sociálním kasinu Jungle Circle." }] }),
+  head: () => ({
+    meta: [
+      { title: "FAQ — Jungle Circle" },
+      { name: "description", content: "Časté otázky o sociálním kasinu Jungle Circle." },
+      openGraphUrl("/faq"),
+    ],
+    links: [canonicalLink("/faq")],
+  }),
   component: () => (
     <InfoPage title="Časté otázky">
       {items.map(([q, a]) => (
