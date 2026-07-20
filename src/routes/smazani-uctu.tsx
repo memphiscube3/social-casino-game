@@ -11,7 +11,7 @@ export const Route = createFileRoute("/smazani-uctu")({
         <li>Přihlaste se do svého profilu.</li>
         <li>Otevřete sekci <strong>Nastavení</strong>.</li>
         <li>Klikněte na <strong>Smazat účet</strong>.</li>
-        <li>Nebo napište na <a href="mailto:support@cirkusova-stestena.cz">support@cirkusova-stestena.cz</a> z emailu, kterým jste se registrovali.</li>
+        <li>Nebo napište na <a href="mailto:support@junglecircle.cz">support@junglecircle.cz</a> z emailu, kterým jste se registrovali.</li>
       </ol>
       <p>Po potvrzení dojde k trvalému vymazání profilu, herní historie a všech osobních údajů do 30 dnů.</p>
     </InfoPage>
