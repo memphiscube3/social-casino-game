@@ -95,7 +95,7 @@ function AuthPage() {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   className="w-full px-4 py-3 rounded-lg bg-black/40 border border-[oklch(0.78_0.16_75/0.4)] text-[oklch(0.95_0.04_85)] focus:outline-none focus:border-[oklch(0.88_0.16_85)]"
-                  placeholder="ringmaster"
+                  placeholder="explorer"
                 />
               </div>
             )}
