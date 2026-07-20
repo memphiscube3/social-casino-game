@@ -94,7 +94,7 @@ function Profile() {
   const deleteAccount = async () => {
     if (!confirm("Opravdu chcete smazat účet? Akce je nevratná.")) return;
     // Soft: sign out + ask user to email support to fully delete. Provide page reference.
-    toast.info("Pro úplné smazání nás kontaktujte na support@cirkusova-stestena.cz");
+    toast.info("Pro úplné smazání nás kontaktujte na support@junglecircle.cz");
     nav({ to: "/smazani-uctu" });
   };
 

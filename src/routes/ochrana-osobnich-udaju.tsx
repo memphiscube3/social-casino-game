@@ -11,7 +11,7 @@ export const Route = createFileRoute("/ochrana-osobnich-udaju")({
       <h2>K jakému účelu</h2>
       <p>Údaje slouží výhradně k provozu hry, uložení vašeho pokroku a zlepšování služby.</p>
       <h2>Vaše práva</h2>
-      <p>Máte právo na přístup, opravu i vymazání svých údajů. Kontaktujte nás na support@cirkusova-stestena.cz.</p>
+      <p>Máte právo na přístup, opravu i vymazání svých údajů. Kontaktujte nás na support@junglecircle.cz.</p>
       <h2>Sdílení s třetími stranami</h2>
       <p>Vaše osobní údaje neprodáváme. Sdílíme je pouze s poskytovateli nezbytné infrastruktury (hosting, databáze).</p>
     </InfoPage>
