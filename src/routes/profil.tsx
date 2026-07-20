@@ -88,7 +88,7 @@ function Profile() {
     { t: "Džunglový mistr (500 točení)", got: profile.total_spins >= 500 },
     { t: "Šťastlivec (první výhra)", got: profile.total_wins >= 1 },
     { t: "Velká výhra 1000+", got: profile.biggest_win >= 1000 },
-    { t: "Bohatý ringmaster (5000+ mincí)", got: profile.coins >= 5000 },
+    { t: "Bohatý průzkumník (5000+ mincí)", got: profile.coins >= 5000 },
   ];
 
   const deleteAccount = async () => {
